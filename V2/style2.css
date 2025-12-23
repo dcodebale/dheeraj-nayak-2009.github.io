@@ -1,0 +1,92 @@
+
+/* =====================
+   HORIZONTAL JOURNEY
+   ===================== */
+
+.journey-wrapper {
+    height: 300vh; /* controls scroll length */
+    position: relative;
+}
+
+.journey-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: #130f1e;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.journey-title {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 40px;
+    background: linear-gradient(90deg, #ff6ec4, #7873f5);
+    background-clip: text;
+    color: transparent;
+}
+
+.journey-track {
+    display: flex;
+    gap: 80px;
+    padding: 0 10vw;
+    will-change: transform;
+}
+
+.journey-title::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: #FFC107;
+    z-index: -1;
+    transform: translateY(-50%);
+}
+
+.journey-card {
+    min-width: 320px;
+    max-width: 320px;
+    background: #1e162b;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 5px 5px 20px #7873f5, -5px -5px 20px #ff6ec4;
+    transition: transform 0.3s;
+
+}
+
+/* 
+.journey-card:hover {
+    transform: translateY(-10px);
+} */
+
+.journey-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    /* border-radius: 14px; */
+    margin-bottom: 15px;
+    mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), black, rgba(0, 0, 0, 0.7));
+    /* mask-image: url("https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2014/10/mask-image.png?x49452"); */
+    mask-position: center;
+    mask-size: cover;
+    /* mask-image: url("https://cpng.pikpng.com/pngl/s/78-785481_squares-clipart-black-square-frame-illustration-png-download.png");
+    -webkit-mask-image: url("https://cpng.pikpng.com/pngl/s/78-785481_squares-clipart-black-square-frame-illustration-png-download.png");
+    mask-position: center;
+    -webkit-mask-position: center; */
+    clip-path: polygon(10% 0%, 90% 0%, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0% 90%, 0% 10%);
+}
+
+.journey-card h3 {
+    margin: 0 0 10px;
+    color: #fff36a;
+}
+
+.journey-card p {
+    font-size: 15px;
+    opacity: 0.9;
+}
+

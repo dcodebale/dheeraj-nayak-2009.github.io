@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Portfolio</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100..700&family=Poppins:wght@100..900&display=swap');
+
+/* =====================
+   GLOBAL SCALE CONTROL
+   ===================== */
+:root {
+    --s: 1;
+}
+
+@media (max-width: 768px) {
+    :root { --s: 0.8; }
+}
+
+@media (max-width: 480px) {
+    :root { --s: 0.7; }
+}
+
+/* =====================
+   BASE STYLES
+   ===================== */
+body {
+    background-color: #130f1e;
+    color: #e0e0e0;
+    font-family: 'Josefin Sans', sans-serif;
+    margin: 0;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    max-width: 1100px;
+    margin: auto;
+    position: fixed;
+    z-index: 10;
+    width: calc(100% - 30px);
+}
+
+/* LINKS */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    z-index: 1;
+}
+
+/* HAMBURGER */
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.hamburger span {
+    width: 26px;
+    height: 3px;
+    background: #e0e0e0;
+    border-radius: 2px;
+    transition: 0.3s;
+}
+
+/* ANIMATION → X */
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 7px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -8px);
+}
+
+
+nav a {
+    color: #e0e0e0;
+    text-decoration: none;
+}
+
+logo {
+    font-size: 24px;
+    font-weight: bold;
+    background: linear-gradient(45deg, #ff6ec4, #7873f5);
+    background-clip: text;
+    color: transparent;
+}
+
+/* =====================
+   heroimg
+   ===================== */
+.heroimg {
+    text-align: center;
+    padding: calc(20px * var(--s)) 20px;
+}
+
+.pic {
+    position: relative;
+    display: inline-block;
+}
+
+/* IMAGE */
+.pic img {
+    width: calc(300px * var(--s));
+    clip-path: polygon(
+        50% 0%,
+        100% 25%,
+        100% 75%,
+        50% 100%,
+        0% 75%,
+        0% 25%
+    );
+}
+
+/* HEXAGON */
+hexagon {
+    position: absolute;
+    width: calc(300px * var(--s));
+    height: calc(350px * var(--s));
+    background: linear-gradient(45deg, #ff6ec4, #7873f5);
+    clip-path: polygon(
+        50% 0%,
+        100% 30%,
+        100% 67%,
+        50% 100%,
+        0% 67%,
+        0% 30%
+    );
+    bottom: calc(100px * var(--s));
+    left: 50%;
+    transform: translate(
+        calc(-50% - calc(0px * var(--s))),
+        calc(96px * var(--s))
+    );
+    z-index: -1;
+}
+
+/* OUTER BORDER */
+.pic::before {
+    content: '';
+    position: absolute;
+    width: calc(310px * var(--s));
+    height: calc(365px * var(--s));
+    background: white;
+    clip-path: polygon(
+        50% 0%,
+        100% 30%,
+        100% 68%,
+        50% 100%,
+        0% 68%,
+        0% 30%
+    );
+    top: calc(93px * var(--s));
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -2;
+}
+
+/* GLOW */
+.pic::after {
+    content: '';
+    position: absolute;
+    width: calc(300px * var(--s));
+    height: calc(300px * var(--s));
+    background: conic-gradient(#7873f5, #ff6ec4);
+    border-radius: 50%;
+    top: calc(125px * var(--s));
+    left: 50%;
+    transform: translateX(-50%);
+    filter: blur(calc(40px * var(--s)));
+    z-index: -3;
+}
+
+/* NAME */
+.name {
+    margin-top: calc(20px * var(--s));
+    font-size: calc(28px * var(--s));
+    font-family: 'Josefin Sans', sans-serif;
+    color: transparent;
+    background: linear-gradient(90deg, #ff8e25, #fff36a);
+    background-clip: text;
+}
+.namet {
+    font-size: calc(24px * var(--s));
+    
+    margin-top: calc(15px * var(--s));
+}
+
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+.info {
+    margin-left: calc(40px * var(--s));
+    font-size: calc(18px * var(--s));
+    display: flex;
+    flex-direction: column;
+    gap: calc(15px * var(--s));
+    align-items: center;
+}
+tm {
+    font-weight: bold;
+    font-size: calc(25px * var(--s));
+}
+.info button {
+    padding: calc(10px * var(--s)) calc(15px * var(--s));
+    font-size: calc(16px * var(--s));
+    background: linear-gradient(90deg, #e39300, #fff36a);
+    border: none;
+    border-radius: calc(30px * var(--s));
+    cursor: pointer;
+    transition: background 0.3s;
+    
+}
+.btxt {
+    background: linear-gradient(to right, #723303, #2d1100);
+    color: transparent;
+    background-clip: text;
+    font-weight: bold;
+}
+
+.wishpopup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #1e162b;
+    padding: calc(20px * var(--s));
+    border-radius: calc(10px * var(--s));
+    box-shadow: 0 0 calc(20px * var(--s)) rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    width: 320px;
+}
+
+.wishpopup h2 {
+    margin-top: 0;
+    margin-bottom: 40px;
+    font-size: calc(22px * var(--s));
+    font-size: 15px;
+}
+.wishpopup form {
+    display: flex;
+    flex-direction: column;
+}
+
+.wishpopup input[type="submit"] {
+    padding: calc(10px * var(--s));
+    background: linear-gradient(90deg, #009847, #008e4e);
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s;
+    border: none;
+    border-radius: 30px;
+    width: 45%;
+}
+.wishpopup button {
+    padding: calc(10px * var(--s));
+    background: linear-gradient(90deg, #ff3c3c, #e83c3c);
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s;
+    border: none;
+    border-radius: 30px;
+    margin-top: 10px;
+    width: 45%;
+}
+*:focus {outline: 1px solid #7873f5; outline-offset: 5px;}
+
+.intro {
+    max-width: 800px;
+    margin: 30px auto;
+    font-size: calc(18px * var(--s));
+    text-align: center;
+    line-height: 1.6;
+    padding: 0 20px;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #444;
+    margin: 40px auto;
+}
+
+/* MOBILE */
+@media (max-width: 560px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: #130f1e;
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+        padding: 25px 0;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-10px);
+        transition: 0.25s ease;
+    }
+
+    .nav-links.active {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+    .hero {
+        flex-direction: column;
+    }
+    .info {
+        margin-left: 0;
+        /* align-items: center; */
+        font-size: calc(25px * var(--s));
+    }
+    tm {
+        font-size: calc(30px * var(--s));
+    }
+    .info button {
+        font-size: calc(20px * var(--s));
+    }
+    .intro {
+        font-size: calc(24px * var(--s));
+    }   
+}
+
+</style>
+
+<style>
+/* =====================
+   HORIZONTAL JOURNEY
+   ===================== */
+
+.journey-wrapper {
+    height: 300vh; /* controls scroll length */
+    position: relative;
+}
+
+.journey-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: #130f1e;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.journey-title {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 40px;
+    background: linear-gradient(90deg, #ff6ec4, #7873f5);
+    background-clip: text;
+    color: transparent;
+}
+
+.journey-track {
+    display: flex;
+    gap: 80px;
+    padding: 0 10vw;
+    will-change: transform;
+}
+
+.journey-title::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: #FFC107;
+    z-index: -1;
+    transform: translateY(-50%);
+}
+
+.journey-card {
+    min-width: 320px;
+    max-width: 320px;
+    background: #1e162b;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 5px 5px 20px #7873f5, -5px -5px 20px #ff6ec4;
+    transition: transform 0.3s;
+
+}
+
+/* 
+.journey-card:hover {
+    transform: translateY(-10px);
+} */
+
+.journey-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    /* border-radius: 14px; */
+    margin-bottom: 15px;
+    mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), black, rgba(0, 0, 0, 0.7));
+    /* mask-image: url("https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2014/10/mask-image.png?x49452"); */
+    mask-position: center;
+    mask-size: cover;
+    /* mask-image: url("https://cpng.pikpng.com/pngl/s/78-785481_squares-clipart-black-square-frame-illustration-png-download.png");
+    -webkit-mask-image: url("https://cpng.pikpng.com/pngl/s/78-785481_squares-clipart-black-square-frame-illustration-png-download.png");
+    mask-position: center;
+    -webkit-mask-position: center; */
+    clip-path: polygon(10% 0%, 90% 0%, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0% 90%, 0% 10%);
+}
+
+.journey-card h3 {
+    margin: 0 0 10px;
+    color: #fff36a;
+}
+
+.journey-card p {
+    font-size: 15px;
+    opacity: 0.9;
+}
+
+</style>
+
+<style>
+/* =====================
+   SKILLS SECTION
+   ===================== */
+
+.skills-wrapper {
+    height: 400vh;
+    position: relative;
+    background: #130f1e;
+}
+
+.skills-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.skills-title {
+    text-align: center;
+    font-size: 42px;
+    margin-bottom: 60px;
+    background: linear-gradient(90deg, #ff6ec4, #7873f5);
+    background-clip: text;
+    color: transparent;
+    font-weight: 700;
+}
+
+.skills-container {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Central Avatar */
+.skills-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    /* border: 4px solid #7873f5; */
+    box-shadow: 0 0 40px rgba(120, 115, 245, 0.6),
+                0 0 60px rgba(255, 110, 196, 0.4);
+    z-index: 10;
+    background: conic-gradient(#7873f5, #ff6ec4, #7873f5);
+    /* filter: blur(10px); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 25px;
+
+}
+
+.skills-center img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: invert(1);
+}
+
+/* Skill Orbit Container */
+.skill-orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.5s ease-out;
+}
+
+/* Skill Meter (Gauge Container) */
+.skill-meter {
+    position: relative;
+    width: 90px;
+    height: 90px;
+}
+
+/* SVG Gauge */
+.gauge-svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.gauge-bg {
+    fill: none;
+    stroke: #2a2438;
+    stroke-width: 8;
+}
+
+.gauge-fill {
+    fill: none;
+    stroke: url(#gradient);
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-dasharray: 314;
+    stroke-dashoffset: 314;
+    transition: stroke-dashoffset 2s ease;
+}
+
+/* Skill Icon (Center of Gauge) */
+.skill-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #1e162b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid #7873f5;
+}
+
+.skill-icon img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+/* Labels */
+.skill-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff36a;
+    text-align: center;
+}
+
+.skill-percent {
+    font-size: 16px;
+    font-weight: 700;
+    background: linear-gradient(90deg, #ff6ec4, #7873f5);
+    background-clip: text;
+    color: transparent;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .skills-container {
+        height: 500px;
+    }
+    
+    .skills-center {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .skill-meter {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .skill-icon {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .skill-icon img {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .skill-label {
+        font-size: 12px;
+    }
+    
+    .skill-percent {
+        font-size: 14px;
+    }
+}
+
+</style>
+
+<style>
+body {
+	margin: 0;
+}
+.gradient {
+	--x1: 90%;
+	--y1: 90%;
+	--sizex1: 60%;
+	--sizey1: 60%;
+	
+	--x2: 10%;
+	--y2: 90%;
+	--sizex2: 40%;
+	--sizey2: 40%;
+	
+	--x3: 50%;
+	--y3: 5%;
+	--sizex3: 50%;
+	--sizey3: 60%;
+	
+	width: 100%;
+	height: 100%;
+	background-color: #5e518a;
+	background-image: 
+		radial-gradient(var(--sizex1) var(--sizey1) at var(--x1) var(--y1), #7c4684 0%,rgba(189, 133, 251, 0) 100%),
+		radial-gradient(var(--sizex2) var(--sizey2) at var(--x2) var(--y2), #387095 0%, rgba(255, 218, 95, 0) 100%),
+		radial-gradient(var(--sizex3) var(--sizey3) at var(--x3) var(--y3), #91667d 0%, rgba(214, 180, 254, 0) 100%);
+  z-index: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  filter: brightness(0.3) blur(40px);
+}
+
+</style>
+
+<style>
+/* =====================
+   PROJECTS SECTION
+   ===================== */
+.projects {
+    max-width: 1100px;
+    margin: 60px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 0 20px; 
+  
+  }
+.project {
+    background: #1e162b;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 5px 5px 20px #7873f5, -5px -5px 20px #ff6ec4;
+    transition: transform 0.3s;
+}
+.project:hover {
+    transform: translateY(-10px);
+}
+.project h2 {
+    margin-top: 0;
+    color: #fff36a;
+}
+.project p {
+    font-size: 15px;
+    opacity: 0.9;
+}
+.notgonnaboast {
+    grid-column: 1 / -1;
+    text-align: center;
+    background: #1e162b;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 5px 5px 20px #7873f5, -5px -5px 20px #ff6ec4;
+}
+.forthenerds {
+    margin-top: 15px;
+}
+.forthenerds button {
+    padding: 10px 15px;
+    background: linear-gradient(90deg, #009847, #008e4e);
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s;
+    border: none;
+    border-radius: 30px;
+}
+.forthenerds button a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.projects-title {
+    text-align: center;
+    font-size: 42px;
+    margin: 40px;
+    background: linear-gradient(90deg, #ff6ec4, #7873f5);
+    background-clip: text;
+    color: transparent;
+    font-weight: 700;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- SVG Gradient Definition -->
+<svg width="0" height="0" style="position: absolute;">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#7873f5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff6ec4;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+</svg>
+
+<nav class="nav">
+    <logo>Dheeraj</logo>
+
+    <button class="hamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Projects</a></li>
+        <li><a href="#">About Me</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+</nav>
+
+<section class="hero">
+    <div class="heroimgimg">
+        <div class="pic">
+            <img src="ddn.png" alt="Profile Picture">
+            <hexagon></hexagon>
+        </div>
+        <div class="namet">It's me, <span class="name">Dheeraj D Nayak</span></div>
+    </div>
+    <div class="info">
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+        <time></time>
+        <DOB>>>> DOB: 10 March 2009</DOB>
+        <dynmicage></dynmicage>
+        <dayslived></dayslived></div>
+        <button><span class="btxt">Wish me on my next birthday</span></button>
+    </div>
+</section>
+
+
+<hr width="80%">
+<div class="intro">I'm a student developer from Udupi, Karnataka, passionate about coding, design, and creating '<b>COOL Stuff</b>'. I love exploring new technologies, experimenting with ideas, and building projects that are both useful and visually appealing. I enjoy solving problems through code and constantly improving my skills by working on real-world applications.</div>
+<hr width="80%">
+
+<section class="journey-wrapper">
+  <div class="journey-sticky">
+    <h2 class="journey-title">My Journey</h2>
+
+    <div class="journey-track">
+
+      <div class="journey-card">
+        <img src="https://i.ytimg.com/vi/okOP7quHbkI/maxresdefault.jpg">
+        <h3>2009 · Birth</h3>
+        <p>Born in Udupi, Karnataka, India.</p>
+      </div>
+
+      <div class="journey-card">
+        <img src="https://littlerock.edu.in/wp-content/uploads/elementor/thumbs/DJI_0008-scaled-e1655705625448-pqkw5kmjexo4mx2rslf2dlk6bbi058sk1yeft7x9jo.jpg">
+        <h3>Schooling at Little Rock</h3>
+        <p>I began my schooling at Little Rock School, Brahmavar, starting from playschool.</p>
+      </div>
+
+      <!-- introduction to html in 7th class -->
+        <div class="journey-card">
+            <img src="firstpage.png">
+            <h3>2021 · First Coding Experience</h3>
+            <p>Introduced to some basic concepts of HTML and CSS in class 7.</p>
+        </div>
+
+      <div class="journey-card">
+        <img style="background: url('board.jfif'); background-position: bottom; background-size: cover;">
+        <h3>10th CBSE Boards</h3>
+        <p>Completed the 10th standard CBSE board exams, securing an average of 95.6%.</p>
+      </div>
+
+      <div class="journey-card">
+        <img src="https://www.jnanasudha.org/udupi_jnanasudha_puc/gallery/12.png">
+        <h3>Present · I PUC</h3>
+        <p>Studying at JnanaSudha PU College, Udupi.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS SECTION -->
+<section class="skills-wrapper">
+<div class="gradient"></div>
+  <div class="skills-sticky">
+    <h2 class="skills-title">My Skills</h2>
+    
+    <div class="skills-container">
+      <!-- Central Avatar -->
+      <div class="skills-center">
+        SKILLS
+      </div>
+
+      <div class="skill-orbit" data-angle="0" data-skill="90">
+        <div class="skill-meter">
+          <svg class="gauge-svg" viewBox="0 0 120 120">
+            <circle class="gauge-bg" cx="60" cy="60" r="50"/>
+            <circle class="gauge-fill" cx="60" cy="60" r="50"/>
+          </svg>
+          <div class="skill-icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/732/732212.png" alt="HTML">
+          </div>
+        </div>
+        <div class="skill-label">HTML</div>
+        <div class="skill-percent">0%</div>
+      </div>
+
+      <div class="skill-orbit" data-angle="45" data-skill="85">
+        <div class="skill-meter">
+          <svg class="gauge-svg" viewBox="0 0 120 120">
+            <circle class="gauge-bg" cx="60" cy="60" r="50"/>
+            <circle class="gauge-fill" cx="60" cy="60" r="50"/>
+          </svg>
+          <div class="skill-icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/732/732190.png" alt="CSS">
+          </div>
+        </div>
+        <div class="skill-label">CSS</div>
+        <div class="skill-percent">0%</div>
+      </div>
+
+      <div class="skill-orbit" data-angle="90" data-skill="80">
+        <div class="skill-meter">
+          <svg class="gauge-svg" viewBox="0 0 120 120">
+            <circle class="gauge-bg" cx="60" cy="60" r="50"/>
+            <circle class="gauge-fill" cx="60" cy="60" r="50"/>
+          </svg>
+          <div class="skill-icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968292.png" alt="JavaScript">
+          </div>
+        </div>
+        <div class="skill-label">JavaScript</div>
+        <div class="skill-percent">0%</div>
+      </div>
+
+      <div class="skill-orbit" data-angle="135" data-skill="75">
+        <div class="skill-meter">
+          <svg class="gauge-svg" viewBox="0 0 120 120">
+            <circle class="gauge-bg" cx="60" cy="60" r="50"/>
+            <circle class="gauge-fill" cx="60" cy="60" r="50"/>
+          </svg>
+          <div class="skill-icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png" alt="Python">
+          </div>
+        </div>
+        <div class="skill-label">Python</div>
+        <div class="skill-percent">0%</div>
+      </div>
+
+      <div class="skill-orbit" data-angle="180" data-skill="70">
+        <div class="skill-meter">
+          <svg class="gauge-svg" viewBox="0 0 120 120">
+            <circle class="gauge-bg" cx="60" cy="60" r="50"/>
+            <circle class="gauge-fill" cx="60" cy="60" r="50"/>
+          </svg>
+          <div class="skill-icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/919/919825.png" alt="Node.js">
+          </div>
+        </div>
+        <div class="skill-label">Node.js</div>
+        <div class="skill-percent">0%</div>
+      </div>
+
+      <div class="skill-orbit" data-angle="225" data-skill="65">
+        <div class="skill-meter">
+          <svg class="gauge-svg" viewBox="0 0 120 120">
+            <circle class="gauge-bg" cx="60" cy="60" r="50"/>
+            <circle class="gauge-fill" cx="60" cy="60" r="50"/>
+          </svg>
+          <div class="skill-icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/1051/1051277.png" alt="React">
+          </div>
+        </div>
+        <div class="skill-label">React</div>
+        <div class="skill-percent">0%</div>
+      </div>
+
+      <div class="skill-orbit" data-angle="270" data-skill="78">
+        <div class="skill-meter">
+          <svg class="gauge-svg" viewBox="0 0 120 120">
+            <circle class="gauge-bg" cx="60" cy="60" r="50"/>
+            <circle class="gauge-fill" cx="60" cy="60" r="50"/>
+          </svg>
+          <div class="skill-icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/2235/2235347.png" alt="Figma">
+          </div>
+        </div>
+        <div class="skill-label">Figma</div>
+        <div class="skill-percent">0%</div>
+      </div>
+
+      <div class="skill-orbit" data-angle="315" data-skill="82">
+        <div class="skill-meter">
+          <svg class="gauge-svg" viewBox="0 0 120 120">
+            <circle class="gauge-bg" cx="60" cy="60" r="50"/>
+            <circle class="gauge-fill" cx="60" cy="60" r="50"/>
+          </svg>
+          <div class="skill-icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="Git">
+          </div>
+        </div>
+        <div class="skill-label">Git</div>
+        <div class="skill-percent">0%</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: PROJECTS -->
+<section class="projects-section">
+<h2 class="projects-title">Projects</h2>
+<div class="projects">
+  <div class="project">
+    <h2>DheerOS</h2>
+    <p>A lightweight, customizable website with an OS-like interface.</p>
+  </div>
+  <div class="project">
+    <h2>Portfolio Website</h2>
+    <p>It's obvious that I'll mention this awesome looking portfolio.</p>
+  </div>
+  <div class="project">
+    <h2>Music Player</h2>
+    <p>A simple and intuitive music player application to manage tasks.</p>
+  </div>
+  <div class="project">
+    <h2>Weather App</h2>
+    <p>A web app that provides real-time weather updates for any location.</p>
+  </div>
+  <div class="project">
+    <h2>SafeResQ</h2>
+    <p>An emergency response system for quick assistance during crises.</p>
+  </div>
+  <div class="project">
+    <h2>Synappz Chat</h2>
+    <p>A real-time chat application with user authentication and group chats.</p>
+  </div>
+  <div class="project">
+    <h2>RainPyMeter</h2>
+    <p>Desktop Clock Application using Python [replica of 'Rainmeter']</p>
+  </div>
+  <div class="project">
+    <h2>Interactive Diwali</h2>
+    <p>A really cool webpage dedicated to celebrating Diwali with interactive elements.</p>
+  </div>
+  <div class="notgonnaboast">
+    <h2>Not going to boast more projects here...</h2>
+    <p>Check out my GitHub for more cool stuff I've built!</p>
+    <div class="forthenerds">
+      For the nerds: <button><a href="https://github.com/Dheeraj-Nayak-2009" target="_blank">github.com/Dheeraj-Nayak-2009</a></button>
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="wishpopup">
+    <!-- get name and wishes -->
+    <h2>Your wish is displayed on my birthday!</h2>
+    <!-- inputs -->
+    <form id="wishForm">
+        <label for="name">Your Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="wishes">Your Wishes:</label><br>
+        <input id="wishes" name="wishes" value="Happy Birthday!" required></input><br><br>
+        <div><input type="submit" value="Submit"> | <button onclick="clos()">Cancel</button></div>
+    </form>
+</div>
+
+<script>
+document.getElementById("wishForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const nameInput = document.getElementById("name");
+    const wishesInput = document.getElementById("wishes");
+
+    const name = nameInput.value.trim();
+    const wishes = wishesInput.value.trim();
+
+    if (!name || !wishes) {
+        alert("Please fill both fields!");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("message", wishes);
+    formData.append("type", "wish");
+
+    // sending text on submit button
+    const submitButton = this.querySelector('input[type="submit"]');
+    submitButton.value = "Sending...";
+    submitButton.style.pointerEvents = "none";
+
+    try {
+        const res = await fetch(
+          "https://script.google.com/macros/s/AKfycbzeOLm-hgAzne-b1H4FvKnVxwHYXUlALhSGQQmgdjwV-Jw7_r-FQApZY2jMbq7aLifezA/exec",
+          {
+            method: "POST",
+            body: formData
+          }
+        );
+
+        if (res.ok) {
+            clos();
+            this.reset();
+            // alert("Wish sent 🎉");
+            // the submit button text changes to 'Wish Sent!' and is disabled
+            const submitButton = this.querySelector('input[type="submit"]');
+            submitButton.value = "Wish Sent!";
+            submitButton.style.pointerEvents = "none";
+        } else {
+            alert("Server error");
+        }
+    } catch (err) {
+        alert("Network error");
+        console.error(err);
+    }
+});
+</script>
+
+
+
+<script>
+// on clicking the button, show the popup
+document.querySelector('.info button').addEventListener('click', () => {
+    document.querySelector('.wishpopup').style.display = 'block';
+});
+// function to close the popup
+function clos() {
+    document.querySelector('.wishpopup').style.display = 'none';
+}
+</script>
+
+<script>
+// =======================
+// DATE OF BIRTH
+// =======================
+const dob = new Date(2009, 2, 10); // 10 March 2009 (month is 0-based)
+
+// =======================
+// LIVE CLOCK
+// =======================
+function updateTime() {
+    const now = new Date();
+
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+
+    document.querySelector('time').innerHTML =
+        `>>> IST: <tm>${hours%12}:${minutes}:${seconds}</tm> ${hours >= 12 ? 'PM' : 'AM'}`;
+}
+// in 12 hr format
+setInterval(updateTime, 1000);
+updateTime(); // initial call
+
+// =======================
+// AGE (YEARS + MONTHS)
+// =======================
+function calculateAgeYrsMonths(dob) {
+    const now = new Date();
+
+    let years = now.getFullYear() - dob.getFullYear();
+    let months = now.getMonth() - dob.getMonth();
+
+    if (months < 0) {
+        years--;
+        months += 12;
+    }
+
+    return { years, months };
+}
+
+const age = calculateAgeYrsMonths(dob);
+document.querySelector('dynmicage').textContent =
+    `>>> Age: ${age.years} years, ${age.months} months`;
+
+// =======================
+// DAYS LIVED
+// =======================
+const diffTime = Date.now() - dob.getTime();
+const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+document.querySelector('dayslived').textContent =
+    `>>> Days Lived: ${diffDays.toLocaleString()} days`;
+</script>
+
+
+<script>
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navLinks.classList.toggle('active');
+});
+</script>
+
+
+
+<script>
+const journeyWrapper = document.querySelector('.journey-wrapper');
+const journeyTrack = document.querySelector('.journey-track');
+
+window.addEventListener('scroll', () => {
+  const start = journeyWrapper.offsetTop;
+  const end = start + journeyWrapper.offsetHeight - window.innerHeight;
+  const scrollY = window.scrollY;
+
+  if (scrollY >= start && scrollY <= end) {
+    const progress = (scrollY - start) / (end - start);
+
+    // ✅ FIXED calculation
+    const maxTranslate =
+      journeyTrack.scrollWidth - journeyWrapper.clientWidth + 60; // right padding
+
+    journeyTrack.style.transform =
+      `translateX(${-progress * maxTranslate}px)`;
+  }
+});
+</script>
+
+<script>
+// ============================================
+// SKILLS ROTATION
+// ============================================
+
+const skillsWrapper = document.querySelector('.skills-wrapper');
+const skillsContainer = document.querySelector('.skills-container');
+const skillsSticky = document.querySelector('.skills-sticky');
+const skillOrbits = document.querySelectorAll('.skill-orbit');
+
+const ROTATIONS = 1; // Number of revolutions
+
+// Position skill orbits in circle
+const orbitRadius = 175; // Distance from center
+const isMobile = window.innerWidth <= 768;
+const adjustedRadius = isMobile ? 170 : orbitRadius;
+
+function positionSkills(rotation) {
+  skillOrbits.forEach((orbit, index) => {
+    const baseAngle = parseFloat(orbit.dataset.angle);
+    const angleRad = (baseAngle + rotation) * (Math.PI / 180);
+    
+    const x = Math.cos(angleRad) * adjustedRadius;
+    const y = Math.sin(angleRad) * adjustedRadius;
+    
+    orbit.style.transform = `translate(-50%, -50%) translate(${x}px, ${y}px)`;
+  });
+}
+
+// Initialize positions
+positionSkills(0);
+
+// Set gauges to 0 initially
+skillOrbits.forEach(orbit => {
+  const gaugeFill = orbit.querySelector('.gauge-fill');
+  const skillPercent = orbit.querySelector('.skill-percent');
+  
+  gaugeFill.style.strokeDashoffset = '314'; // 0%
+  skillPercent.textContent = '0%';
+});
+
+// Function to animate gauges to target
+function animateGauges() {
+  skillOrbits.forEach(orbit => {
+    const targetSkill = parseFloat(orbit.dataset.skill);
+    const gaugeFill = orbit.querySelector('.gauge-fill');
+    const skillPercent = orbit.querySelector('.skill-percent');
+    
+    const offset = 314 - (314 * targetSkill / 100);
+    gaugeFill.style.strokeDashoffset = offset;
+    skillPercent.textContent = `${targetSkill}%`;
+  });
+}
+
+// Intersection Observer to trigger gauge animation when section is fully in view
+const gaugeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateGauges();
+      gaugeObserver.disconnect(); // Trigger only once
+    }
+  });
+}, { threshold: 1.0 });
+
+if (skillsSticky) {
+  gaugeObserver.observe(skillsSticky);
+}
+
+// Scroll handler for rotation
+function handleSkillsScroll() {
+  if (!skillsWrapper) return;
+  
+  const start = skillsWrapper.offsetTop;
+  const end = start + skillsWrapper.offsetHeight - window.innerHeight;
+  const scrollY = window.scrollY;
+  
+  if (scrollY >= start && scrollY <= end) {
+    const progress = (scrollY - start) / (end - start);
+    const rotation = progress * ROTATIONS * 360;
+    positionSkills(rotation);
+  }
+}
+
+// Attach scroll listener
+window.addEventListener('scroll', handleSkillsScroll);
+
+// Responsive repositioning
+window.addEventListener('resize', () => {
+  positionSkills(0); // Reset to initial
+});
+
+</script>
+
+
+</body>
+</html>

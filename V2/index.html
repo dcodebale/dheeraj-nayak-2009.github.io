@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="https://lh3.googleusercontent.com/proxy/9OvVO5ECgo5KaHOEU4Oe26DP3VM0o2lJsZxBCheLN2jS8EIQxnuUmdxt5MM_4fjTJyxgS8iD3j5ZEmzumdQR26E8IMdDD6kTdRWLCgGe1Hak" type="image/x-icon">
+
+<title>Portfolio</title>
+
+<!-- LETS PUT SOME CSS LINKS -->
+<link rel="stylesheet" href="style1.css">
+<link rel="stylesheet" href="style2.css">
+<link rel="stylesheet" href="style3.css">
+<link rel="stylesheet" href="style4.css">
+<link rel="stylesheet" href="style5.css">
+<link rel="stylesheet" href="style6.css">
+<link rel="stylesheet" href="style7.css">
+<link rel="stylesheet" href="style8.css">
+<link rel="stylesheet" href="style9.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+</head>
+
+<body>
+<div class="loading-screen">
+  <div class="text-container">
+    
+    
+      <h3>Loading...</h3>
+    
+    
+    </div>
+    <div class="gradient-bg">
+      <svg xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="goo">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
+            <feBlend in="SourceGraphic" in2="goo" />
+          </filter>
+        </defs>
+      </svg>
+      <div class="gradients-container">
+        <div class="g1"></div>
+        <div class="g2"></div>
+        <div class="g3"></div>
+        <div class="g4"></div>
+        <div class="g5"></div>
+        <div class="interactive"></div>
+      </div>
+      <div class="gradients-container">
+        <div class="g1"></div>
+        <div class="g2"></div>
+        <div class="g3"></div>
+        <div class="g4"></div>
+        <div class="g5"></div>
+        <div class="interactive"></div>
+      </div>
+    </div>
+</div>
+
+<!-- SVG Gradient Definition -->
+<svg width="0" height="0" style="position: absolute;">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#7873f5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff6ec4;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+</svg>
+
+<nav class="nav">
+    <logo>Dheeraj</logo>
+
+    <button class="hamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#journey">Journey</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#feedback">Feedback</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<div class="hide">
+<div class="space"></div>
+<section class="birthday">
+    <div class="birthday-text">🎉 It's my birthday today!🎉</div>
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="200px" width="200px" version="1.1" id="Layer_1" viewBox="0 0 512 512" xml:space="preserve"><script xmlns="" id="eppiocemhmnlbhjplcgkofciiegomcon"/><script xmlns=""/><script xmlns=""/>
+      <path style="fill:#DB5E49;" d="M512,378.435v100.174C512,497.051,497.051,512,478.609,512H33.391C14.949,512,0,497.051,0,478.609  V378.435c0-24.588,19.933-44.522,44.522-44.522H66.56V201.406c0-19.026,15.538-34.45,34.706-34.45H410.29  c19.168,0,34.706,15.423,34.706,34.45v132.507h22.482C492.066,333.913,512,353.847,512,378.435z"/>
+      <path style="fill:#F77E41;" d="M512,378.435v22.261h-0.223h-44.522c-6.147,0-11.13,4.983-11.13,11.13v11.13  c0,18.442-14.949,33.391-33.391,33.391l0,0c-18.442,0-33.391-14.949-33.391-33.391v-11.13c0-6.147-4.983-11.13-11.13-11.13h-22.261  c-6.147,0-11.13,4.983-11.13,11.13v11.13c0,18.442-14.949,33.391-33.391,33.391l0,0c-18.442,0-33.391-14.949-33.391-33.391v-11.13  c0-6.147-4.983-11.13-11.13-11.13h-22.261c-6.147,0-11.13,4.983-11.13,11.13v11.13c0,18.442-14.949,33.391-33.391,33.391l0,0  c-18.442,0-33.391-14.949-33.391-33.391v-11.13c0-6.147-4.983-11.13-11.13-11.13h-22.261c-6.147,0-11.13,4.983-11.13,11.13v11.13  c0,18.442-14.949,33.391-33.391,33.391l0,0c-18.442,0-33.391-14.949-33.391-33.391v-11.13c0-6.147-4.983-11.13-11.13-11.13h-33.28H0  v-22.261c0-24.588,19.933-44.522,44.522-44.522h22.261V201.406c0-19.026,15.538-34.45,34.706-34.45h309.024  c19.167,0,34.705,15.423,34.705,34.45v132.507h22.261C492.066,333.913,512,353.847,512,378.435z"/>
+      <path style="fill:#FF9B57;" d="M66.783,222.609v-21.202c0-19.026,15.538-34.45,34.706-34.45h309.024  c19.167,0,34.705,15.423,34.705,34.45v21.202h-33.391c-6.147,0-11.13,4.983-11.13,11.13v11.13c0,18.442-14.949,33.391-33.391,33.391  l0,0c-18.442,0-33.391-14.949-33.391-33.391v-11.13c0-6.147-4.983-11.13-11.13-11.13h-22.261c-6.147,0-11.13,4.983-11.13,11.13  v11.13c0,18.442-14.949,33.391-33.391,33.391l0,0c-18.442,0-33.391-14.949-33.391-33.391v-11.13c0-6.147-4.983-11.13-11.13-11.13  h-22.261c-6.147,0-11.13,4.983-11.13,11.13v11.13c0,18.442-14.949,33.391-33.391,33.391l0,0c-18.442,0-33.391-14.949-33.391-33.391  v-11.13c0-6.147-4.983-11.13-11.13-11.13H66.783z"/>
+      <path style="fill:#FFDB80;" d="M445.217,233.739h-33.391v11.13c0,24.549-19.972,44.522-44.522,44.522s-44.522-19.972-44.522-44.522  v-11.13h-22.261v11.13c0,24.549-19.972,44.522-44.522,44.522s-44.522-19.972-44.522-44.522v-11.13h-22.261v11.13  c0,24.549-19.972,44.522-44.522,44.522s-44.522-19.972-44.522-44.522v-11.13H66.783v-22.261h33.391  c12.275,0,22.261,9.986,22.261,22.261v11.13c0,12.275,9.986,22.261,22.261,22.261s22.261-9.986,22.261-22.261v-11.13  c0-12.275,9.986-22.261,22.261-22.261h22.261c12.275,0,22.261,9.986,22.261,22.261v11.13c0,12.275,9.986,22.261,22.261,22.261  s22.261-9.986,22.261-22.261v-11.13c0-12.275,9.986-22.261,22.261-22.261h22.261c12.275,0,22.261,9.986,22.261,22.261v11.13  c0,12.275,9.986,22.261,22.261,22.261s22.261-9.986,22.261-22.261v-11.13c0-12.275,9.986-22.261,22.261-22.261h33.391l0,0V233.739  L445.217,233.739z"/>
+      <path style="fill:#FFA583;" d="M512,378.435v22.261h-0.223h-44.522c-6.147,0-11.13,4.983-11.13,11.13v11.13  c0,18.442-14.949,33.391-33.391,33.391l0,0c-18.442,0-33.391-14.949-33.391-33.391v-11.13c0-6.147-4.983-11.13-11.13-11.13h-22.261  c-6.147,0-11.13,4.983-11.13,11.13v11.13c0,18.442-14.949,33.391-33.391,33.391l0,0c-18.442,0-33.391-14.949-33.391-33.391v-11.13  c0-6.147-4.983-11.13-11.13-11.13h-22.261c-6.147,0-11.13,4.983-11.13,11.13v11.13c0,18.442-14.949,33.391-33.391,33.391l0,0  c-18.442,0-33.391-14.949-33.391-33.391v-11.13c0-6.147-4.983-11.13-11.13-11.13h-22.261c-6.147,0-11.13,4.983-11.13,11.13v11.13  c0,18.442-14.949,33.391-33.391,33.391l0,0c-18.442,0-33.391-14.949-33.391-33.391v-11.13c0-6.147-4.983-11.13-11.13-11.13h-33.28H0  v-22.261c0-24.588,19.933-44.522,44.522-44.522h422.957C492.066,333.913,512,353.847,512,378.435z"/>
+      <path style="fill:#FFDDCF;" d="M506.379,411.826h-44.522v11.13c0,24.549-19.972,44.522-44.522,44.522s-44.522-19.972-44.522-44.522  v-11.13h-22.261v11.13c0,24.549-19.972,44.522-44.522,44.522s-44.522-19.972-44.522-44.522v-11.13h-22.261v11.13  c0,24.549-19.972,44.522-44.522,44.522s-44.522-19.972-44.522-44.522v-11.13h-22.261v11.13c0,24.549-19.972,44.522-44.522,44.522  s-44.522-19.972-44.522-44.522v-11.13H5.621c-2.054,0-3.97-0.565-5.621-1.535V391.1c1.652-0.969,3.568-1.535,5.621-1.535h33.28  c12.275,0,22.261,9.986,22.261,22.261v11.13c0,12.275,9.986,22.261,22.261,22.261s22.261-9.986,22.261-22.261v-11.13  c0-12.275,9.986-22.261,22.261-22.261h22.261c12.275,0,22.261,9.986,22.261,22.261v11.13c0,12.275,9.986,22.261,22.261,22.261  s22.261-9.986,22.261-22.261v-11.13c0-12.275,9.986-22.261,22.261-22.261h22.261c12.275,0,22.261,9.986,22.261,22.261v11.13  c0,12.275,9.986,22.261,22.261,22.261s22.261-9.986,22.261-22.261v-11.13c0-12.275,9.986-22.261,22.261-22.261h22.261  c12.275,0,22.261,9.986,22.261,22.261v11.13c0,12.275,9.986,22.261,22.261,22.261c12.275,0,22.261-9.986,22.261-22.261v-11.13  c0-12.275,9.986-22.261,22.261-22.261h44.522c2.054,0,3.97,0.565,5.621,1.535v19.191  C510.349,411.261,508.433,411.826,506.379,411.826z"/>
+      <path style="fill:#D89C44;" d="M255.777,122.583L255.777,122.583c-28.44,0-46.938-29.634-34.219-54.821l32.715-66.829  c0.28-0.57,0.865-0.933,1.505-0.933l0,0c0.64,0,1.224,0.363,1.504,0.933l32.715,66.829  C302.716,92.949,284.218,122.583,255.777,122.583z"/>
+      <path style="fill:#EAB250;" d="M292.373,72.946c-5.513,3.135-11.962,4.968-19.029,4.968l0,0c-21.945,0-37.953-17.645-38.285-37.275  l19.437-39.704C254.776,0.363,255.36,0,256,0s1.224,0.363,1.504,0.933l32.715,66.829C291.083,69.473,291.79,71.205,292.373,72.946z"/>
+    </svg>
+    <!-- This should show names of all the well wishers and then some cake svg and ... -->
+    <!-- well wishers -->
+    <div class="well-wishers">
+      <!-- dummy -->
+      <div class="wish-header">Birthday Wishes</div>
+      <div class="bRow"><div class="wishername">Alice</div><div class="bText">Happy Birthday</div></div>
+      <div class="bRow"><div class="wishername">Bob</div><div class="bText">Happy Birthday</div></div>
+      <div class="bRow"><div class="wishername">Charlie</div><div class="bText">Happy Birthday</div></div>
+      <div class="bRow"><div class="wishername">Diana</div><div class="bText">Happy Birthday</div></div>
+    </div>
+</section>
+<div class="space"></div>
+</div>
+
+<section class="hero" id="home">
+    <div class="heroimg">
+        <div class="pic">
+            <img src="ddn.png" alt="Profile Picture">
+            <hexagon></hexagon>
+        </div>
+        <div class="namet">It's me, <span class="name">Dheeraj D Nayak</span></div>
+        <div class="typewriter">
+          I’m a <span id="typeText"></span><span class="cursor">|</span>
+        </div>
+
+    </div>
+    <div class="info">
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+        <time></time>
+        <DOB>>>> DOB: 10 March 2009</DOB>
+        <dynmicage></dynmicage>
+        <dayslived></dayslived></div>
+        <button><span class="btxt">Wish me on my birthday</span></button>
+    </div>
+</section>
+
+
+<hr width="80%">
+<div class="intro">I'm a student developer from Udupi, Karnataka, passionate about coding, design, and creating '<b>COOL Stuff</b>'. I love exploring new technologies, experimenting with ideas, and building projects that are both useful and visually appealing. I enjoy solving problems through code and constantly improving my skills by working on real-world applications.</div>
+<hr width="80%">
+
+<section class="journey-wrapper" id="journey">
+  <div class="journey-sticky">
+    <h2 class="journey-title">My Journey</h2>
+
+    <div class="journey-track">
+
+      <div class="journey-card">
+        <img src="https://i.ytimg.com/vi/okOP7quHbkI/maxresdefault.jpg">
+        <h3>2009 · Birth</h3>
+        <p>Born in Udupi, Karnataka, India.</p>
+      </div>
+
+      <div class="journey-card">
+        <img src="https://littlerock.edu.in/wp-content/uploads/elementor/thumbs/DJI_0008-scaled-e1655705625448-pqkw5kmjexo4mx2rslf2dlk6bbi058sk1yeft7x9jo.jpg">
+        <h3>Schooling at Little Rock</h3>
+        <p>I began my schooling at Little Rock School, Brahmavar, starting from playschool.</p>
+      </div>
+
+      <!-- introduction to html in 7th class -->
+        <div class="journey-card">
+            <img src="firstpage.png">
+            <h3>2021 · First Coding Experience</h3>
+            <p>Introduced to some basic concepts of HTML and CSS in class 7.</p>
+        </div>
+
+      <div class="journey-card">
+        <img style="background: url('board.jfif'); background-position: bottom; background-size: cover;">
+        <h3>10th CBSE Boards</h3>
+        <p>Completed the 10th standard CBSE board exams, securing an average of 95.6%.</p>
+      </div>
+
+      <div class="journey-card">
+        <img src="https://www.jnanasudha.org/udupi_jnanasudha_puc/gallery/12.png">
+        <h3>Present · I PUC</h3>
+        <p>Studying at JnanaSudha PU College, Udupi.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS SECTION -->
+<section class="skills-wrapper" id="skills">
+<div class="gradient"></div>
+  <div class="skills-sticky">
+    <h2 class="skills-title">My Skills</h2>
+    
+    <div class="skills-container">
+      <!-- Central Avatar -->
+      <div class="skills-center">
+        SKILLS
+      </div>
+
+      <div class="skill-orbit" data-angle="0" data-skill="90">
+        <div class="skill-meter">
+          <svg class="gauge-svg" viewBox="0 0 120 120">
+            <circle class="gauge-bg" cx="60" cy="60" r="50"/>
+            <circle class="gauge-fill" cx="60" cy="60" r="50"/>
+          </svg>
+          <div class="skill-icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/732/732212.png" alt="HTML">
+          </div>
+        </div>
+        <div class="skill-label">HTML</div>
+        <div class="skill-percent">0%</div>
+      </div>
+
+      <div class="skill-orbit" data-angle="45" data-skill="85">
+        <div class="skill-meter">
+          <svg class="gauge-svg" viewBox="0 0 120 120">
+            <circle class="gauge-bg" cx="60" cy="60" r="50"/>
+            <circle class="gauge-fill" cx="60" cy="60" r="50"/>
+          </svg>
+          <div class="skill-icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/732/732190.png" alt="CSS">
+          </div>
+        </div>
+        <div class="skill-label">CSS</div>
+        <div class="skill-percent">0%</div>
+      </div>
+
+      <div class="skill-orbit" data-angle="90" data-skill="80">
+        <div class="skill-meter">
+          <svg class="gauge-svg" viewBox="0 0 120 120">
+            <circle class="gauge-bg" cx="60" cy="60" r="50"/>
+            <circle class="gauge-fill" cx="60" cy="60" r="50"/>
+          </svg>
+          <div class="skill-icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968292.png" alt="JavaScript">
+          </div>
+        </div>
+        <div class="skill-label">JavaScript</div>
+        <div class="skill-percent">0%</div>
+      </div>
+
+      <div class="skill-orbit" data-angle="135" data-skill="75">
+        <div class="skill-meter">
+          <svg class="gauge-svg" viewBox="0 0 120 120">
+            <circle class="gauge-bg" cx="60" cy="60" r="50"/>
+            <circle class="gauge-fill" cx="60" cy="60" r="50"/>
+          </svg>
+          <div class="skill-icon">
+            <img src="https://symbols.getvecta.com/stencil_27/79_sql-database-generic.494ff6320e.png" alt="SQL">
+          </div>
+        </div>
+        <div class="skill-label">SQL</div>
+        <div class="skill-percent">0%</div>
+      </div>
+
+      <div class="skill-orbit" data-angle="180" data-skill="70">
+        <div class="skill-meter">
+          <svg class="gauge-svg" viewBox="0 0 120 120">
+            <circle class="gauge-bg" cx="60" cy="60" r="50"/>
+            <circle class="gauge-fill" cx="60" cy="60" r="50"/>
+          </svg>
+          <div class="skill-icon">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Blender_logo_no_text.svg/1251px-Blender_logo_no_text.svg.png" alt="Blender">
+          </div>
+        </div>
+        <div class="skill-label">Blender</div>
+        <div class="skill-percent">0%</div>
+      </div>
+
+      <div class="skill-orbit" data-angle="225" data-skill="65">
+        <div class="skill-meter">
+          <svg class="gauge-svg" viewBox="0 0 120 120">
+            <circle class="gauge-bg" cx="60" cy="60" r="50"/>
+            <circle class="gauge-fill" cx="60" cy="60" r="50"/>
+          </svg>
+          <div class="skill-icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/4293/4293709.png" alt="Game Dev">
+          </div>
+        </div>
+        <div class="skill-label">Game Dev</div>
+        <div class="skill-percent">0%</div>
+      </div>
+
+      <div class="skill-orbit" data-angle="270" data-skill="78">
+        <div class="skill-meter">
+          <svg class="gauge-svg" viewBox="0 0 120 120">
+            <circle class="gauge-bg" cx="60" cy="60" r="50"/>
+            <circle class="gauge-fill" cx="60" cy="60" r="50"/>
+          </svg>
+          <div class="skill-icon">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Figma-logo.svg/960px-Figma-logo.svg.png?20250625151003" alt="Figma">
+          </div>
+        </div>
+        <div class="skill-label">Figma</div>
+        <div class="skill-percent">0%</div>
+      </div>
+
+      <div class="skill-orbit" data-angle="315" data-skill="82">
+        <div class="skill-meter">
+          <svg class="gauge-svg" viewBox="0 0 120 120">
+            <circle class="gauge-bg" cx="60" cy="60" r="50"/>
+            <circle class="gauge-fill" cx="60" cy="60" r="50"/>
+          </svg>
+          <div class="skill-icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png" alt="Python">
+          </div>
+        </div>
+        <div class="skill-label">Python</div>
+        <div class="skill-percent">0%</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: PROJECTS -->
+<section class="projects-section" id="projects">
+<h2 class="projects-title">Projects</h2>
+<div class="projects">
+  <div class="project">
+    <h2>DheerOS</h2>
+    <p>A lightweight, customizable website with an OS-like interface.</p>
+  </div>
+  <div class="project">
+    <h2>Portfolio Website</h2>
+    <p>It's obvious that I'll mention this awesome looking portfolio.</p>
+  </div>
+  <div class="project">
+    <h2>Music Player</h2>
+    <p>A simple and intuitive music player application with a modern UI.</p>
+  </div>
+  <div class="project">
+    <h2>Weather App</h2>
+    <p>A web app that provides real-time weather updates for any location.</p>
+  </div>
+  <div class="project">
+    <h2>SafeResQ</h2>
+    <p>An emergency response system for quick assistance during crises.</p>
+  </div>
+  <div class="project">
+    <h2>Synappz Chat</h2>
+    <p>A real-time chat application with user authentication and group chats.</p>
+  </div>
+  <div class="project">
+    <h2>RainPyMeter</h2>
+    <p>Desktop Clock Application using Python [replica of 'Rainmeter']</p>
+  </div>
+  <div class="project">
+    <h2>Interactive Diwali</h2>
+    <p>A really cool webpage dedicated to celebrating Diwali with interactive elements.</p>
+  </div>
+  <div class="notgonnaboast">
+    <h2>Not going to boast more projects here...</h2>
+    <p>Check out my GitHub for more cool stuff I've built!</p>
+    <div class="forthenerds">
+      For the nerds: <button><a href="https://github.com/Dheeraj-Nayak-2009" target="_blank">github.com/Dheeraj-Nayak-2009</a></button>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- =======================
+     FEEDBACK WALL SECTION
+======================== -->
+<section class="feedback-wall-wrapper" id="feedback">
+  <h2 class="feedback-title">Feedback Wall</h2>
+  <div class="feedback-wall">
+
+    <!-- Sticky Notes Track -->
+    <div class="feedback-track" id="feedbackTrack">
+      <!-- Notes injected via JS -->
+    </div>
+
+  </div>
+
+  <button class="add-feedback-btn" id="openFeedback">
+    + Add Feedback
+  </button>
+
+  <div class="custom-cursor"></div>
+
+</section>
+
+<section id="contact">
+  
+  <h1 class="section-header">ContΛct</h1>
+  
+  <div class="contact-wrapper">
+  
+  <!-- Left contact page --> 
+    
+    <form id="contact-form" class="form-horizontal" role="form">
+       
+      <div class="form-group">
+        <div class="col-sm-12">
+          <input type="text" class="form-control" id="name" placeholder="NAME" name="name" value="" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-12">
+          <input type="email" class="form-control" id="email" placeholder="EMAIL" name="email" value="" required>
+        </div>
+      </div>
+
+      <textarea class="form-control" rows="10" placeholder="MESSAGE" name="message" required></textarea>
+      
+      <button class="btn btn-primary send-button" id="submit" type="submit" value="SEND">
+        <div class="alt-send-button">
+          <i class="fa fa-paper-plane"></i><span class="send-text">SEND</span>
+        </div>
+      
+      </button>
+      
+    </form>
+    
+  <!-- Left contact page --> 
+    
+      <div class="direct-contact-container">
+
+        <ul class="contact-list">
+          <li class="list-item"><i class="fa-solid fa-location-dot fa-2x"></i><span class="contact-text place">Udupi, Karnataka</span></i></li>
+          
+          <li class="list-item"><i class="fa fa-phone fa-2x"><span class="contact-text phone"><a href="tel:+919988878965" title="Give me a call">+91 998dummy65</a></span></i></li>
+          
+          <li class="list-item"><i class="fa fa-envelope fa-2x"><span class="contact-text gmail"><a href="mailto:ddnportfolio@gmail.com" title="Send me an email">ddnportfolio@gmail.com</a></span></i></li>
+          
+        </ul>
+
+        <hr>
+        <ul class="social-media-list">
+          <a href="https://github.com/Dheeraj-Nayak-2009" target="_blank" class="contact-icon">
+            <i class="fa-brands fa-github"></i></a>
+          
+          <a href="https://iili.io/flRphnn.png" target="_blank" class="contact-icon">
+            <i class="fa-brands fa-instagram"></i></a>
+          
+          <a href="https://iili.io/flRphnn.png" target="_blank" class="contact-icon">
+            <i class="fa-brands fa-discord"></i></a>
+          
+          <a href="https://iili.io/flRphnn.png" target="_blank" class="contact-icon">
+            <i class="fa-brands fa-facebook"></i></a>
+                 
+        </ul>
+        <hr>
+
+      </div>
+    
+  </div>
+  
+</section>
+
+<div class="main"></div>
+
+<footer>&copy; 2025 DHEERAJ | ALL RIGHTS RESERVED</footer>
+
+<!-- Feedback Popup -->
+<div class="feedback-popup" id="feedbackPopup">
+  <form id="feedbackForm" class="feedback-note">
+    <h3>Leave a Feedback ✨</h3>
+
+    <textarea id="feedbackText" placeholder="Write your feedback here..." required></textarea>
+
+    <input type="text" id="feedbackName" placeholder="~ Your Name" required>
+
+    <div class="feedback-actions">
+      <button type="submit">Stick it!</button>
+      <button type="button" onclick="closeFeedback()">Cancel</button>
+    </div>
+  </form>
+</div>
+
+<!-- Read Feedback Popup -->
+<div class="feedback-popup" id="readPopup">
+  <div class="feedback-note read">
+    <p id="readText"></p>
+    <span id="readName"></span><br><br>
+    <button onclick="closeRead()">Close</button>
+  </div>
+</div>
+
+
+<div class="wishpopup">
+    <!-- get name and wishes -->
+    <h2>Your wish is displayed on my birthday!</h2>
+    <!-- inputs -->
+    <form id="wishForm">
+        <label for="wish-name">Your Name:</label><br>
+        <input type="text" id="wish-name" name="name" required><br><br>
+        <label for="wish-wishes">Your Wishes:</label><br>
+        <input id="wish-wishes" name="wishes" value="Happy Birthday!" required></input><br><br>
+        <div><input type="submit" value="Submit"> | <button onclick="clos()">Cancel</button></div>
+    </form>
+</div>
+
+<script src="script1.js"></script>
+<script src="script2.js"></script>
+<script src="script3.js"></script>
+<script src="script4.js"></script>
+<script src="script5.js"></script>
+<script src="script6.js"></script>
+<script src="script7.js"></script>
+<script src="script8.js"></script>
+<script src="script9.js"></script>
+<script src="script10.js"></script>
+<script src="script11.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Portfolio</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100..700&family=Poppins:wght@100..900&display=swap');
+
+/* =====================
+   GLOBAL SCALE CONTROL
+   ===================== */
+:root {
+    --s: 1;
+}
+
+@media (max-width: 768px) {
+    :root { --s: 0.8; }
+}
+
+@media (max-width: 480px) {
+    :root { --s: 0.7; }
+}
+
+/* =====================
+   BASE STYLES
+   ===================== */
+body {
+    background-color: #130f1e;
+    color: #e0e0e0;
+    font-family: 'Josefin Sans', sans-serif;
+    margin: 0;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* LINKS */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    z-index: 1;
+}
+
+/* HAMBURGER */
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.hamburger span {
+    width: 26px;
+    height: 3px;
+    background: #e0e0e0;
+    border-radius: 2px;
+    transition: 0.3s;
+}
+
+/* ANIMATION → X */
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 7px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -8px);
+}
+
+
+nav a {
+    color: #e0e0e0;
+    text-decoration: none;
+}
+
+logo {
+    font-size: 24px;
+    font-weight: bold;
+    background: linear-gradient(45deg, #ff6ec4, #7873f5);
+    background-clip: text;
+    color: transparent;
+}
+
+/* =====================
+   heroimg
+   ===================== */
+.heroimg {
+    text-align: center;
+    padding: calc(20px * var(--s)) 20px;
+}
+
+.pic {
+    position: relative;
+    display: inline-block;
+}
+
+/* IMAGE */
+.pic img {
+    width: calc(300px * var(--s));
+    clip-path: polygon(
+        50% 0%,
+        100% 25%,
+        100% 75%,
+        50% 100%,
+        0% 75%,
+        0% 25%
+    );
+}
+
+/* HEXAGON */
+hexagon {
+    position: absolute;
+    width: calc(300px * var(--s));
+    height: calc(350px * var(--s));
+    background: linear-gradient(45deg, #ff6ec4, #7873f5);
+    clip-path: polygon(
+        50% 0%,
+        100% 30%,
+        100% 67%,
+        50% 100%,
+        0% 67%,
+        0% 30%
+    );
+    bottom: calc(100px * var(--s));
+    left: 50%;
+    transform: translate(
+        calc(-50% - calc(0px * var(--s))),
+        calc(96px * var(--s))
+    );
+    z-index: -1;
+}
+
+/* OUTER BORDER */
+.pic::before {
+    content: '';
+    position: absolute;
+    width: calc(310px * var(--s));
+    height: calc(365px * var(--s));
+    background: white;
+    clip-path: polygon(
+        50% 0%,
+        100% 30%,
+        100% 68%,
+        50% 100%,
+        0% 68%,
+        0% 30%
+    );
+    top: calc(93px * var(--s));
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -2;
+}
+
+/* GLOW */
+.pic::after {
+    content: '';
+    position: absolute;
+    width: calc(300px * var(--s));
+    height: calc(300px * var(--s));
+    background: conic-gradient(#7873f5, #ff6ec4);
+    border-radius: 50%;
+    top: calc(125px * var(--s));
+    left: 50%;
+    transform: translateX(-50%);
+    filter: blur(calc(40px * var(--s)));
+    z-index: -3;
+}
+
+/* NAME */
+.name {
+    margin-top: calc(20px * var(--s));
+    font-size: calc(28px * var(--s));
+    font-family: 'Josefin Sans', sans-serif;
+    color: transparent;
+    background: linear-gradient(90deg, #ff8e25, #fff36a);
+    background-clip: text;
+}
+.namet {
+    font-size: calc(24px * var(--s));
+    
+    margin-top: calc(15px * var(--s));
+}
+
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+.info {
+    margin-left: calc(40px * var(--s));
+    font-size: calc(18px * var(--s));
+    display: flex;
+    flex-direction: column;
+    gap: calc(15px * var(--s));
+    align-items: center;
+}
+tm {
+    font-weight: bold;
+    font-size: calc(25px * var(--s));
+}
+.info button {
+    padding: calc(10px * var(--s)) calc(15px * var(--s));
+    font-size: calc(16px * var(--s));
+    background: linear-gradient(90deg, #e39300, #fff36a);
+    border: none;
+    border-radius: calc(30px * var(--s));
+    cursor: pointer;
+    transition: background 0.3s;
+    
+}
+.btxt {
+    background: linear-gradient(to right, #723303, #2d1100);
+    color: transparent;
+    background-clip: text;
+    font-weight: bold;
+}
+
+.wishpopup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #1e162b;
+    padding: calc(20px * var(--s));
+    border-radius: calc(10px * var(--s));
+    box-shadow: 0 0 calc(20px * var(--s)) rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    width: 320px;
+}
+
+.wishpopup h2 {
+    margin-top: 0;
+    margin-bottom: 40px;
+    font-size: calc(22px * var(--s));
+    font-size: 15px;
+}
+.wishpopup form {
+    display: flex;
+    flex-direction: column;
+}
+
+.wishpopup input[type="submit"] {
+    padding: calc(10px * var(--s));
+    background: linear-gradient(90deg, #009847, #008e4e);
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s;
+    border: none;
+    border-radius: 30px;
+    width: 45%;
+}
+.wishpopup button {
+    padding: calc(10px * var(--s));
+    background: linear-gradient(90deg, #ff3c3c, #e83c3c);
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s;
+    border: none;
+    border-radius: 30px;
+    margin-top: 10px;
+    width: 45%;
+}
+*:focus {outline: 1px solid #7873f5; outline-offset: 5px;}
+
+.intro {
+    max-width: 800px;
+    margin: 30px auto;
+    font-size: calc(18px * var(--s));
+    text-align: center;
+    line-height: 1.6;
+    padding: 0 20px;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #444;
+    margin: 40px auto;
+}
+
+/* MOBILE */
+@media (max-width: 560px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: #130f1e;
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+        padding: 25px 0;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-10px);
+        transition: 0.25s ease;
+    }
+
+    .nav-links.active {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+    .hero {
+        flex-direction: column;
+    }
+    .info {
+        margin-left: 0;
+        /* align-items: center; */
+        font-size: calc(25px * var(--s));
+    }
+    tm {
+        font-size: calc(30px * var(--s));
+    }
+    .info button {
+        font-size: calc(20px * var(--s));
+    }
+    .intro {
+        font-size: calc(24px * var(--s));
+    }   
+}
+
+</style>
+
+<style>
+/* =====================
+   HORIZONTAL JOURNEY
+   ===================== */
+
+.journey-wrapper {
+    height: 300vh; /* controls scroll length */
+    position: relative;
+}
+
+.journey-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: #130f1e;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.journey-title {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 40px;
+    background: linear-gradient(90deg, #ff6ec4, #7873f5);
+    background-clip: text;
+    color: transparent;
+}
+
+.journey-track {
+    display: flex;
+    gap: 80px;
+    padding: 0 10vw;
+    will-change: transform;
+}
+
+.journey-title::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: #FFC107;
+    z-index: -1;
+    transform: translateY(-50%);
+}
+
+.journey-card {
+    min-width: 320px;
+    max-width: 320px;
+    background: #1e162b;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 5px 5px 20px #7873f5, -5px -5px 20px #ff6ec4;
+    transition: transform 0.3s;
+
+}
+
+/* 
+.journey-card:hover {
+    transform: translateY(-10px);
+} */
+
+.journey-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    /* border-radius: 14px; */
+    margin-bottom: 15px;
+    mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), black, rgba(0, 0, 0, 0.7));
+    /* mask-image: url("https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2014/10/mask-image.png?x49452"); */
+    mask-position: center;
+    mask-size: cover;
+    /* mask-image: url("https://cpng.pikpng.com/pngl/s/78-785481_squares-clipart-black-square-frame-illustration-png-download.png");
+    -webkit-mask-image: url("https://cpng.pikpng.com/pngl/s/78-785481_squares-clipart-black-square-frame-illustration-png-download.png");
+    mask-position: center;
+    -webkit-mask-position: center; */
+    clip-path: polygon(10% 0%, 90% 0%, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0% 90%, 0% 10%);
+}
+
+.journey-card h3 {
+    margin: 0 0 10px;
+    color: #fff36a;
+}
+
+.journey-card p {
+    font-size: 15px;
+    opacity: 0.9;
+}
+
+</style>
+</head>
+
+<body>
+
+<nav class="nav">
+    <logo>Dheeraj</logo>
+
+    <button class="hamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Projects</a></li>
+        <li><a href="#">About Me</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+</nav>
+
+<section class="hero">
+    <div class="heroimgimg">
+        <div class="pic">
+            <img src="ddn.png" alt="Profile Picture">
+            <hexagon></hexagon>
+        </div>
+        <div class="namet">It's me, <span class="name">Dheeraj D Nayak</span></div>
+    </div>
+    <div class="info">
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+        <time></time>
+        <DOB>>>> DOB: 10 March 2009</DOB>
+        <dynmicage></dynmicage>
+        <dayslived></dayslived></div>
+        <button><span class="btxt">Wish me on my next birthday</span></button>
+    </div>
+</section>
+
+
+<hr width="80%">
+<div class="intro">I’m a student developer from Udupi, Karnataka, passionate about coding, design, and creating '<b>COOL Stuff</b>'. I love exploring new technologies, experimenting with ideas, and building projects that are both useful and visually appealing. I enjoy solving problems through code and constantly improving my skills by working on real-world applications.</div>
+<hr width="80%">
+
+<section class="journey-wrapper">
+  <div class="journey-sticky">
+    <h2 class="journey-title">My Journey</h2>
+
+    <div class="journey-track">
+
+      <div class="journey-card">
+        <img src="https://i.ytimg.com/vi/okOP7quHbkI/maxresdefault.jpg">
+        <h3>2009 · Birth</h3>
+        <p>Born in Udupi, Karnataka, India.</p>
+      </div>
+
+      <div class="journey-card">
+        <img src="https://littlerock.edu.in/wp-content/uploads/elementor/thumbs/DJI_0008-scaled-e1655705625448-pqkw5kmjexo4mx2rslf2dlk6bbi058sk1yeft7x9jo.jpg">
+        <h3>Schooling at Little Rock</h3>
+        <p>I began my schooling at Little Rock School, Brahmavar, starting from playschool.</p>
+      </div>
+
+      <!-- introduction to html in 7th class -->
+        <div class="journey-card">
+            <img src="firstpage.png">
+            <h3>2019 · First Coding Experience</h3>
+            <p>Introduced to some basic concepts of HTML and CSS in class 7.</p>
+        </div>
+
+      <div class="journey-card">
+        <img style="background: url('board.jfif'); background-position: bottom; background-size: cover;">
+        <h3>10th CBSE Boards</h3>
+        <p>Completed the 10th standard CBSE board exams, securing an average of 95.6%.</p>
+      </div>
+
+      <div class="journey-card">
+        <img src="https://www.jnanasudha.org/udupi_jnanasudha_puc/gallery/12.png">
+        <h3>Present · I PUC</h3>
+        <p>Studying at JnanaSudha PU College, Udupi.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills">
+    
+</section>
+
+
+<div class="wishpopup">
+    <!-- get name and wishes -->
+    <h2>Your wish is displayed on my birthday!</h2>
+    <!-- inputs -->
+    <form id="wishForm">
+        <label for="name">Your Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="wishes">Your Wishes:</label><br>
+        <input id="wishes" name="wishes" value="Happy Birthday!" required></input><br><br>
+        <div><input type="submit" value="Submit"> | <button onclick="clos()">Cancel</button></div>
+    </form>
+</div>
+
+<script>
+const sheetDBUrl = "https://sheetdb.io/api/v1/bqp2u1e0o1kmv";
+
+document.getElementById("wishForm").addEventListener("submit", async function(e){
+    e.preventDefault(); // prevent form reload
+
+    const name = document.getElementById("name").value.trim();
+    const wishes = document.getElementById("wishes").value.trim();
+
+    if(!name || !wishes){
+        alert("Please fill both fields!");
+        return;
+    }
+
+    // Prepare data in SheetDB format
+    const data = {
+        data: {
+            name: name,
+            message: wishes,
+            type: "wish",
+            date: new Date().toISOString()
+        }
+    };
+
+    try {
+        const res = await fetch(sheetDBUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+
+        if(res.ok){
+            // alert("Your wish has been sent! 🎉");
+            clos(); // close popup
+            this.reset(); // clear form
+        } else {
+            alert("Failed to send wish. Try again!");
+        }
+    } catch (err) {
+        console.error(err);
+        alert("Error sending wish!");
+    }
+});
+</script>
+
+
+<script>
+// on clicking the button, show the popup
+document.querySelector('.info button').addEventListener('click', () => {
+    document.querySelector('.wishpopup').style.display = 'block';
+});
+// function to close the popup
+function clos() {
+    document.querySelector('.wishpopup').style.display = 'none';
+}
+</script>
+
+<script>
+// =======================
+// DATE OF BIRTH
+// =======================
+const dob = new Date(2009, 2, 10); // 10 March 2009 (month is 0-based)
+
+// =======================
+// LIVE CLOCK
+// =======================
+function updateTime() {
+    const now = new Date();
+
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+
+    document.querySelector('time').innerHTML =
+        `>>> IST: <tm>${hours%12}:${minutes}:${seconds}</tm> ${hours >= 12 ? 'PM' : 'AM'}`;
+}
+// in 12 hr format
+setInterval(updateTime, 1000);
+updateTime(); // initial call
+
+// =======================
+// AGE (YEARS + MONTHS)
+// =======================
+function calculateAgeYrsMonths(dob) {
+    const now = new Date();
+
+    let years = now.getFullYear() - dob.getFullYear();
+    let months = now.getMonth() - dob.getMonth();
+
+    if (months < 0) {
+        years--;
+        months += 12;
+    }
+
+    return { years, months };
+}
+
+const age = calculateAgeYrsMonths(dob);
+document.querySelector('dynmicage').textContent =
+    `>>> Age: ${age.years} years, ${age.months} months`;
+
+// =======================
+// DAYS LIVED
+// =======================
+const diffTime = Date.now() - dob.getTime();
+const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+document.querySelector('dayslived').textContent =
+    `>>> Days Lived: ${diffDays.toLocaleString()} days`;
+</script>
+
+
+<script>
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navLinks.classList.toggle('active');
+});
+</script>
+
+
+
+<script>
+const journeyWrapper = document.querySelector('.journey-wrapper');
+const journeyTrack = document.querySelector('.journey-track');
+
+window.addEventListener('scroll', () => {
+  const start = journeyWrapper.offsetTop;
+  const end = start + journeyWrapper.offsetHeight - window.innerHeight;
+  const scrollY = window.scrollY;
+
+  if (scrollY >= start && scrollY <= end) {
+    const progress = (scrollY - start) / (end - start);
+
+    // ✅ FIXED calculation
+    const maxTranslate =
+      journeyTrack.scrollWidth - journeyWrapper.clientWidth + 60; // right padding
+
+    journeyTrack.style.transform =
+      `translateX(${-progress * maxTranslate}px)`;
+  }
+});
+</script>
+
+
+</body>
+</html>

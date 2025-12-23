@@ -1,0 +1,34 @@
+
+body {
+	margin: 0;
+}
+.gradient {
+	--x1: 90%;
+	--y1: 90%;
+	--sizex1: 60%;
+	--sizey1: 60%;
+	
+	--x2: 10%;
+	--y2: 90%;
+	--sizex2: 40%;
+	--sizey2: 40%;
+	
+	--x3: 50%;
+	--y3: 5%;
+	--sizex3: 50%;
+	--sizey3: 60%;
+	
+	width: 100%;
+	height: 100%;
+	background-color: #5e518a;
+	background-image: 
+		radial-gradient(var(--sizex1) var(--sizey1) at var(--x1) var(--y1), #7c4684 0%,rgba(189, 133, 251, 0) 100%),
+		radial-gradient(var(--sizex2) var(--sizey2) at var(--x2) var(--y2), #387095 0%, rgba(255, 218, 95, 0) 100%),
+		radial-gradient(var(--sizex3) var(--sizey3) at var(--x3) var(--y3), #91667d 0%, rgba(214, 180, 254, 0) 100%);
+  z-index: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  filter: brightness(0.3) blur(40px);
+}
+

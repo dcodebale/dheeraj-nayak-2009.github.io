@@ -1,0 +1,70 @@
+
+/* css for birthday section */
+.birthday {
+    background: #1e162b;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 0px auto;
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 5px 5px 20px #7873f5, -5px -5px 20px #ff6ec4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% - 100px);
+  }
+.birthday-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff36a;
+    margin-bottom: 20px;
+}
+.birthday svg {
+    width: 150px;
+    height: 150px;
+}
+
+.space {
+    height: 100px;
+}
+
+.well-wishers {
+    max-width: 600px;
+    margin: 20px auto;
+    text-align: center;
+}
+.wish-header {
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff36a;
+    margin-bottom: 10px;
+}
+.bRow {
+    display: flex;
+    gap: 10px;
+    margin: 15px;
+    max-width: 250px;
+}
+.wishername {
+    background: linear-gradient(to right, #fff86e, #ec8e03);
+    color: #0000;
+    background-clip: text;
+    font-weight: 600;
+    word-wrap: break-word;
+    text-align: left;
+    min-width: 0;
+    flex: 1;
+}
+.bText {
+    font-size: 16px;
+    color: #fff;
+    word-wrap: break-word;
+    text-align: right;
+    min-width: 115px;
+    flex: 1;
+}
+
+.hide {
+    display: none;
+}
