@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Oldenburg&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');html, body {
+    margin: 0;
+    height: 100%;
+    overflow: auto;
+}
+
+body {
+    background-image: url('https://www.herzing.edu/sites/default/files/styles/fp_960_480_jpg/public/2020-09/it_computer_programming.jpg?h=b3660f0d&itok=JxlURDWg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    position: relative;
+    backdrop-filter: brightness(0.1);
+}
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: brightness(20%);
+    z-index: -1;
+}
+
+.container {
+    font-family: "Oldenburg";
+    width: 100%;
+    height: 100px;
+    margin-bottom: 20px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+.imgcont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 80px;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.myimg {
+    width: 50%;
+    max-width: 200px;
+    height: auto;
+    border: 1px solid white;
+    border-radius: 50%;
+    position: relative;
+    z-index: 1;
+    background-color: black;
+    
+}
+
+.imgcont::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    filter: blur(10px);
+    width: calc(50% + 20px); /* Slightly larger than the image */
+    max-width: 230px; /* Adjusted to be slightly larger than the image */
+    height: calc(100% + 20px); /* Adjusted for the height */
+    border-radius: 50%;
+    background: linear-gradient(to right, fuchsia, blue);
+    opacity: 0.5;
+    z-index: 0;
+    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.5);
+}
+
+.imgcont::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 90vw;  /* Make it relative to the viewport width */
+    max-width: 400px;
+    height: 90vw; /* Maintain aspect ratio */
+    max-height: 400px;
+    background: url('skills.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5;
+    z-index: -1;
+    animation: rotate 10s infinite cubic-bezier(0, 0, 0, 0);
+}
+
+.title {
+    width: 100%;
+    color: white;
+    font-weight: 400;
+    font-family: "Poppins";
+    text-align: center;
+    margin: 110px 0 0;
+    text-shadow: 0 0 400px rgb(0, 0, 0);
+}
+
+.static {
+    color: white;
+    font-size: 5vw;
+    z-index: 2;
+    font-weight: 500;
+}
+
+.autotype {
+    color: cyan;
+    z-index: 2;
+    font-weight: bold;
+}
+
+.navbar {
+    background-color: transparent;
+    overflow: hidden;
+    display: flex; 
+    justify-content: center;
+}
+
+.navbar a {  
+    font-family: "Poppins";
+    color: white;  
+    text-align: center;  
+    padding: 20px 16px;  
+    text-decoration: none; 
+}
+
+.dheeraj {
+    background-image: linear-gradient(to right, fuchsia, #22aaff, turquoise);
+    font-family: fantasy;
+    font-weight: bold;
+    font-size: 150%;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transform: translateY(-8%);
+}
+
+.gradienttxt{
+  background-image: linear-gradient(to right, fuchsia,#22aaff, turquoise);
+    font-family: "Poppins";
+    text-shadow: none;
+    font-weight: bold;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.oygradtxt{
+  background-image: linear-gradient(to right, orange, yellow);
+    font-family: "Poppins";
+    font-weight: 500;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.yellow{
+    background: yellow;
+    background-clip: text;
+}
+.content{
+  color: white;
+  text-align: center;
+  width: 80%;
+  margin: 0 auto 30%;
+  font-family: "Poppins";
+}
+hr{
+  margin-bottom: 20px;
+}
+
+@keyframes rotate {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .title{
+        font-size: 30px;
+    }
+  }
+
+@media screen and (min-width: 620px) {
+    .static{
+        font-size: 35px;
+    }
+  }
