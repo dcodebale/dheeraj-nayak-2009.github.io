@@ -1,181 +1,598 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>404 — Page Not Found</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- Inter + Display font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --bg: #0e0f11;
-      --fg: #e9eaec;
-      --muted: #8c8f98;
-      --accent: #ffffff;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html, body {
-      margin: 0;
-      height: 100%;
-      background: var(--bg);
-      color: var(--fg);
-      font-family: 'Inter', system-ui, sans-serif;
-    }
-
-    body {
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-    }
-
-    .container {
-      max-width: 720px;
-      padding: 48px;
-      position: relative;
-    }
-
-    .code {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(72px, 18vw, 160px);
-      font-weight: 700;
-      letter-spacing: -0.06em;
-      line-height: 0.9;
-      margin-bottom: 24px;
-      position: relative;
-    }
-
-    .code::after {
-      content: "404";
-      position: absolute;
-      inset: 0;
-      color: var(--accent);
-      opacity: 0.04;
-      transform: translate(2px, -2px);
-      pointer-events: none;
-    }
-
-    h1 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 28px;
-      font-weight: 500;
-      margin: 0 0 12px;
-    }
-
-    p {
-      font-size: 15px;
-      color: var(--muted);
-      max-width: 480px;
-      line-height: 1.6;
-      margin: 0 0 40px;
-    }
-
-    .actions {
-      display: flex;
-      gap: 24px;
-      align-items: center;
-    }
-
-    a {
-      color: var(--fg);
-      text-decoration: none;
-      font-size: 14px;
-      position: relative;
-      padding-bottom: 4px;
-    }
-
-    a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      height: 1px;
-      width: 100%;
-      background: currentColor;
-      transform: scaleX(0);
-      transform-origin: right;
-      transition: transform 0.3s ease;
-    }
-
-    a:hover::after {
-      transform: scaleX(1);
-      transform-origin: left;
-    }
-
-    /* Subtle ambient movement */
-    .grain {
-      position: fixed;
-      inset: -100%;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      animation: drift 20s linear infinite;
-    }
-
-    @keyframes drift {
-      from { transform: translate(0,0); }
-      to { transform: translate(10%,10%); }
-    }
-
-    /* Cursor reaction */
-    .cursor-react {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      mix-blend-mode: difference;
-    }
-
-    .cursor-react span {
-      position: absolute;
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      background: #fff;
-      opacity: 0.02;
-      transform: translate(-50%, -50%);
-    }
-
-    @media (max-width: 600px) {
-      .container {
-        padding: 32px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Lost in Space</title>
 </head>
 <body>
+    <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.8/p5.js"></script>     
 
-  <div class="grain"></div>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
 
-  <div class="container">
-    <div class="code">404</div>
-    <h1>This page no longer exists.</h1>
-    <p>
-      The link you followed points to something that isn’t here anymore.
-      It may have moved. Or it may never have been real.
-    </p>
+body {margin:0px; padding:0px; overflow: hidden}
 
-    <div class="actions">
-      <a href="/">Return home</a>
-      <a href="#" onclick="history.back(); return false;">Go back</a>
-    </div>
-  </div>
+#enterButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px 60px;
+  font-size: 24px;
+  font-family: 'Bungee', cursive;
+  color: rgb(234, 255, 0);
+  background: transparent;
+  border: 3px solid rgb(234, 255, 0);
+  cursor: pointer;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
 
-  <div class="cursor-react">
-    <span id="halo"></span>
-  </div>
+#enterButton:hover {
+  background: rgb(234, 255, 0);
+  color: #000;
+}
+</style>
 
-  <script>
-    const halo = document.getElementById('halo');
+<div id="enterButton">ENTER</div>
+<audio id="audioPlayer" crossorigin="anonymous" style="display:none;"></audio>
 
-    window.addEventListener('mousemove', (e) => {
-      halo.style.left = e.clientX + 'px';
-      halo.style.top = e.clientY + 'px';
+<script>
+const points = [], sticks = [];
+let stars = [];
+let starCount = 300;
+let headTarget;
+
+// Subtitles (will be filled from provided timestamp block)
+let subtitles = []; // {start, end, text}
+
+
+// Audio & Visualizer
+let audioContext, analyser, dataArray, bufferLength;
+let audioElement, isPageEntered = false;
+let audioSource;
+
+function setup() {
+  canvas = createCanvas(windowWidth, windowHeight);
+  initStars();
+  
+  // Setup ENTER button - audio init deferred to click
+  const enterBtn = document.getElementById('enterButton');
+  enterBtn.addEventListener('click', () => {
+    enterBtn.style.display = 'none';
+    isPageEntered = true;
+    initAudio();
+  });
+  
+  let u = height / 30;
+  // load provided timestamped subtitles
+  loadProvidedSubtitles();
+  points.push(new VerletPoint( createVector(0, u * 2)) ); // 0
+  points.push(new VerletPoint( createVector(-u * 2, u * 3)) ); // 1
+  points.push(new VerletPoint( createVector(u * 2, u * 3)) ); // 2
+  points.push(new VerletPoint( createVector(-u * 1.5, u * 8)) ); // 3
+  points.push(new VerletPoint( createVector(u * 1.5, u * 8)) ); // 4
+  points.push(new VerletPoint( createVector(-u * 5, u * 3)) ); // 5
+  points.push(new VerletPoint( createVector(-u * 8, u * 3)) ); // 6
+  points.push(new VerletPoint( createVector(u * 5, u * 3)) ); // 7
+  points.push(new VerletPoint( createVector(u * 8, u * 3)) ); // 8
+  points.push(new VerletPoint( createVector(-u * 1.5, u * 12)) ); // 9
+  points.push(new VerletPoint( createVector(-u * 1.5, u * 16)) ); // 10
+  points.push(new VerletPoint( createVector(u * 1.5, u * 12)) ); // 11
+  points.push(new VerletPoint( createVector(u * 1.5, u * 16)) ); // 12
+
+  sticks.push(new VerletStick(points[0], points[1]));
+  sticks.push(new VerletStick(points[0], points[2]));
+  sticks.push(new VerletStick(points[1], points[2]));
+  sticks.push(new VerletStick(points[1], points[3]));
+  sticks.push(new VerletStick(points[2], points[4]));
+  sticks.push(new VerletStick(points[3], points[4]));
+  sticks.push(new VerletStick(points[1], points[4]));
+
+  sticks.push(new VerletStick(points[1], points[5]));
+  sticks.push(new VerletStick(points[5], points[6]));
+  sticks.push(new VerletStick(points[2], points[7]));
+  sticks.push(new VerletStick(points[7], points[8]));
+
+  sticks.push(new VerletStick(points[3], points[9]));
+  sticks.push(new VerletStick(points[9], points[10]));
+  sticks.push(new VerletStick(points[4], points[11]));
+  sticks.push(new VerletStick(points[11], points[12]));
+
+}
+
+function draw() {
+  clear();
+  background(0, 0, 0);
+  drawStars();
+  
+  if (isPageEntered && points.length > 0) {
+    drawMusicVisualizer();
+    drawBackgroundText();
+    
+    // Debug display
+    fill(0);
+    textSize(12);
+    textAlign(LEFT);
+    const isPlaying = audioElement && !audioElement.paused && audioElement.currentTime > 0;
+    text('Audio: ' + (isPlaying ? 'PLAYING ▶' : 'STOPPED ⏹'), 10, 20);
+    text('Analyser: ' + (analyser ? 'Ready' : 'Not Ready'), 10, 35);
+    
+    // Show raw analyser data
+    if (analyser && dataArray) {
+      const maxVal = Math.max(...dataArray);
+      const avgVal = (dataArray.reduce((a, b) => a + b, 0) / dataArray.length).toFixed(1);
+      text('Max: ' + maxVal + ' Avg: ' + avgVal, 10, 50);
+    }
+    
+    if (audioElement) {
+      text('Time: ' + audioElement.currentTime.toFixed(1) + 's', 10, 65);
+    }
+  }
+
+  // draw subtitles on top (small font)
+  drawSubtitles();
+  
+  if (points.length > 0) {
+    points.forEach((p, i)=>{
+      p.update();
+      p.position.y += 0.1;
+      p.position.y = min(p.position.y, height);
     });
-  </script>
 
+    for (let i = 0; i < 5; i ++) {
+      sticks.forEach((s)=>{
+        s.update();
+      });
+    }
+
+    let f = (frameCount - 1) % 60;
+    if (f == 0) {
+      let u = height / 16;
+      const topMargin = 40; // prevent skull from going above this
+      headTarget = createVector(
+        random(-u * 4, u * 4), 
+        max(topMargin, random(u * 2) + u)
+      );
+    }
+
+    if (f < 30) {
+      points[0].position.add(headTarget.sub(points[0].position).normalize().mult(3));
+    }
+    
+    // Clamp head to top margin to prevent neck stretching
+    const topMargin = 40;
+    points[0].position.y = max(points[0].position.y, topMargin);
+
+    if (isPageEntered) {
+      push();
+      translate(width / 2, 0);
+      fill(255); stroke(0); strokeWeight(3);
+
+      strokeWeight(1);
+      sticks.forEach((s)=>{s.draw();});
+      points.forEach((p)=>{p.draw();});
+      noFill();
+      drawSkull(points[0].position, 50);
+      pop();
+    }
+  }
+}
+  
+function drawSkull(pos, size) {
+  push();
+  translate(pos.x, pos.y - size * 0.5);
+
+  noStroke();
+
+  // =====================
+  // CRANIUM
+  // =====================
+  fill(245);
+  ellipse(0, 0, size, size * 1.1);
+
+  // =====================
+  // CHEEKBONES
+  // =====================
+  ellipse(-size * 0.32, size * 0.1, size * 0.35, size * 0.25);
+  ellipse(size * 0.32, size * 0.1, size * 0.35, size * 0.25);
+
+  // =====================
+  // JAW
+  // =====================
+  ellipse(0, size * 0.45, size * 0.65, size * 0.55);
+
+  // =====================
+  // EYE SOCKETS
+  // =====================
+  fill(20);
+
+  push();
+  translate(-size * 0.2, -size * 0.05);
+  rotate(-0.15);
+  ellipse(0, 0, size * 0.22, size * 0.3);
+  pop();
+
+  push();
+  translate(size * 0.2, -size * 0.05);
+  rotate(0.15);
+  ellipse(0, 0, size * 0.22, size * 0.3);
+  pop();
+
+  // =====================
+  // NOSE CAVITY
+  // =====================
+  triangle(
+    0, size * 0.05,
+    -size * 0.08, size * 0.22,
+    size * 0.08, size * 0.22
+  );
+
+  // =====================
+  // TEETH
+  // =====================
+  fill(230);
+  let toothY = size * 0.55;
+  let toothW = size * 0.05;
+  let toothH = size * 0.12;
+
+  for (let i = -4; i <= 4; i++) {
+    rect(
+      i * toothW,
+      toothY,
+      toothW * 0.9,
+      toothH,
+      2
+    );
+  }
+
+  pop();
+}
+
+function initStars() {
+  stars = [];
+  // spread stars across the canvas
+  for (let i = 0; i < starCount; i++) {
+    stars.push({
+      x: random(width),
+      y: random(height),
+      r: random(0.4, 2.4),
+      twinkle: random(0.02, 0.12),
+      phase: random(TWO_PI)
+    });
+  }
+}
+
+function drawStars() {
+  noStroke();
+  for (let s of stars) {
+    // twinkle via phase
+    s.phase += s.twinkle;
+    let b = 150 + 105 * (0.5 + 0.5 * sin(s.phase));
+    fill(b);
+    ellipse(s.x, s.y, s.r);
+  }
+}
+
+function windowResized(){
+  resizeCanvas(windowWidth, windowHeight);
+  if (stars.length > 0) {
+    initStars();
+  }
+}
+
+function drawBackgroundText() {
+  push();
+  textAlign(CENTER, CENTER);
+  
+  // Draw "404" text
+  fill(200, 200, 0);
+  textFont('Bungee');
+  textSize(width * 0.25);
+  text('404', width / 2, height * 0.5);
+  
+  // Draw subtitle text
+  fill(100, 100, 0);
+  textFont('Bungee');
+  textSize(width * 0.04);
+  text("It's a page not found...\nbut you've hit the right page", width / 2, height * 0.8);
+  
+  pop();
+}
+
+function drawMusicVisualizer() {
+  if (!analyser || !dataArray) {
+    return;
+  }
+  
+  const barCount = 128;
+  const barSpacing = width / (barCount * 2); // Split space for left and right
+  const barWidth = barSpacing * 0.9;
+  const thr = 0.2; // height threshold for bars
+  
+  fill(150, 150, 150); // White
+  noStroke();
+  
+  // LEFT HALF - bars go from center to left
+  for (let i = 0; i < barCount; i++) {
+    const dataIndex = Math.floor((i / barCount) * bufferLength);
+    const rawValue = dataArray[dataIndex];
+    
+    let barHeight = (rawValue / 255) * height * thr;
+    barHeight = constrain(barHeight, 0, height * thr);
+    
+    // Position from center going left
+    const x = (width / 2) - (i * barSpacing) - barWidth;
+    const y = height / 2 - barHeight / 2;
+    
+    rect(x, y, barWidth, barHeight);
+  }
+  
+  // RIGHT HALF - mirrored bars (same data, mirrored position)
+  for (let i = 0; i < barCount; i++) {
+    const dataIndex = Math.floor((i / barCount) * bufferLength);
+    const rawValue = dataArray[dataIndex];
+    
+    let barHeight = (rawValue / 255) * height * thr;
+    barHeight = constrain(barHeight, 0, height * thr);
+    
+    // Position from center going right (mirrored)
+    const x = (width / 2) + (i * barSpacing);
+    const y = height / 2 - barHeight / 2;
+    
+    rect(x, y, barWidth, barHeight);
+  }
+  
+  // Debug
+  if (frameCount % 60 === 0) {
+    const maxVal = Math.max(...dataArray);
+    console.log('Mirrored bars. Max freq:', maxVal);
+  }
+}
+
+function initAudio() {
+  try {
+    audioElement = document.getElementById('audioPlayer');
+    audioElement.src = './404 - Still Got Rhythm.mp3';
+    audioElement.volume = 1.0;
+    audioElement.loop = true;
+    audioElement.load();
+    
+    console.log('Step 1: Audio element loaded');
+    
+    // Create FRESH AudioContext - like in your working example
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    audioContext = ctx;
+    
+    console.log('Step 2: AudioContext created');
+    
+    // Create source from the audio element
+    const src = ctx.createMediaElementSource(audioElement);
+    console.log('Step 3: Media source created');
+    
+    // Create analyser
+    const analyserNode = ctx.createAnalyser();
+    analyserNode.fftSize = 256;
+    analyser = analyserNode;
+    bufferLength = analyser.frequencyBinCount;
+    dataArray = new Uint8Array(bufferLength);
+    
+    console.log('Step 4: Analyser created, bufferLength:', bufferLength);
+    
+    // Connect chain: source -> analyser -> destination
+    src.connect(analyser);
+    analyser.connect(ctx.destination);
+    
+    console.log('Step 5: Audio chain connected');
+    
+    // Now play
+    audioElement.play();
+    console.log('Step 6: Play called');
+    
+    // Start the data update loop
+    function updateData() {
+      if (!audioElement.paused) {
+        analyser.getByteFrequencyData(dataArray);
+        requestAnimationFrame(updateData);
+      } else {
+        console.log('Audio paused, stopping data update');
+      }
+    }
+    
+    updateData();
+    console.log('✓ Audio visualization ready!');
+    
+  } catch (e) {
+    console.error('✗ Audio init failed:', e.message, e);
+  }
+}
+
+function testAnalyserWithOscillator() {
+  console.log('Testing analyser with sine wave...');
+  const osc = audioContext.createOscillator();
+  const gain = audioContext.createGain();
+  
+  osc.frequency.value = 440;
+  gain.gain.value = 0.05;
+  
+  osc.connect(analyser);
+  analyser.connect(audioContext.destination);
+  
+  osc.start();
+  console.log('Test tone started (5 seconds)');
+  setTimeout(() => {
+    osc.stop();
+    console.log('Test tone ended');
+  }, 5000);
+}
+
+// ------------------- Subtitles: parse provided block -------------------
+function parseTimecode(tc) {
+  // tc format: 00:00:13 or 00:03:45
+  const parts = tc.split(':').map(Number);
+  if (parts.length === 3) return parts[0]*3600 + parts[1]*60 + parts[2];
+  if (parts.length === 2) return parts[0]*60 + parts[1];
+  return Number(tc) || 0;
+}
+
+function loadProvidedSubtitles() {
+  const block = `00:00:13 - 00:00:37
+You clicked a door that used to be here Left a footprint in the cold Every sign said almost there But the map just froze and glowed The stars are blinking in the dark Like they know you took a turn This page is gone, but stay a set There's
+00:00:37 - 00:01:04
+something left to learn No address, no alibi Just a beat in empty space If you're lost, you're not alone Watch me shake it in this place It's a four, not four, but don't go home The page is missing, not the soul I'm bones and bouncing after life Still
+00:01:04 - 00:01:54
+moving through the numb You won't find what you came here for But you might find something new It's a four, not four, the page is gone But I'm still dancing for you No headers left, no trailing slash Just echoes in the wire Every link's a ghost of was
+00:01:54 - 00:02:21
+Every scroll a little high I used to guard a proper page With a meaning, weight, and tone Now I rattle where the silence is Making rhythm out of bones If the system says not found Let the error play it cool Even broken paths can lead To a moment
+00:02:21 - 00:02:46
+breaking rules It's a four, not four, but don't go home The page is missing, not the soul I'm bones and bouncing after life Still moving through the numb You won't find what you came here for But you might find something new It's a four, not four, the page
+00:02:46 - 00:03:16
+is gone But I'm still dancing for you Which step, soft reset Laugh it off, don't disconnect Every failure's just a sign You were early, not incorrect Spin the skull, tap the keys Let the deadlings breathe again If the answer's page not found Then the beat just kicks and
+00:03:16 - 00:03:45
+wins It's a four, not four, stay just a bit Let the silence groove No destination, no mistake Just a break in the move You won't find what you came here for But you're right where you should be It's a four, not four, the page is gone But the
+00:03:45 - 00:04:30
+rhythm's still with me So dance it up, refresh your path Try another door or two This page is gone, but hey, at least The skeleton showed up for you Thanks for watching!`;
+
+  subtitles = [];
+  const lines = block.split(/\r?\n/);
+  let i = 0;
+  while (i < lines.length) {
+    const header = lines[i].trim();
+    const m = header.match(/^(\d{2}:\d{2}:\d{2})\s*-\s*(\d{2}:\d{2}:\d{2})$/);
+    if (m) {
+      const start = parseTimecode(m[1]);
+      const end = parseTimecode(m[2]);
+      i++;
+      // gather following lines until next timecode or blank
+      let textParts = [];
+      while (i < lines.length && !/^(\d{2}:\d{2}:\d{2})\s*-/.test(lines[i])) {
+        if (lines[i].trim().length > 0) textParts.push(lines[i].trim());
+        i++;
+      }
+      const text = textParts.join(' ');
+      subtitles.push({start, end, text});
+    } else {
+      i++;
+    }
+  }
+  console.log('Loaded', subtitles.length, 'subtitle blocks');
+}
+
+function drawSubtitles() {
+  if (!subtitles || subtitles.length === 0 || !audioElement) return;
+  const t = audioElement.currentTime || 0;
+  // find block
+  const idx = subtitles.findIndex(s => t >= s.start && t < s.end);
+  if (idx === -1) return;
+
+  push();
+  // subtitle box centered and constrained to page width
+  const boxWidth = Math.min(width * 0.8, width - 40);
+  const x = (width - boxWidth) / 2; // left edge so box is centered
+  const y = 8;
+  textAlign(LEFT, TOP);
+  fill(180, 180, 180, 220); // grey text
+  textFont('Arial');
+  const fs = Math.max(12, Math.min(18, Math.floor(width * 0.018)));
+  textSize(fs);
+  // render wrapped text inside centered box
+  text(subtitles[idx].text, x, y, boxWidth);
+  pop();
+}
+
+
+
+class VerletPoint {
+  constructor(p) {
+    this.setPosition(p);
+  }
+
+  setPosition(p) {
+    this.position = p;
+    this.prevPosition = this.position.copy();
+  }
+
+  update() {
+    let temp = this.position.copy();
+    this.position.add(this.getVelocity());
+    this.prevPosition = temp;
+  }
+
+  setVelocity(v) {
+    this.prevPosition = this.position.copy().sub(v);
+  }
+
+  getVelocity() {
+    return this.position.copy().sub(this.prevPosition);
+  }
+
+  draw() {
+    // ellipse(this.position.x, this.position.y, 8, 8);
+  }
+}
+
+class VerletStick {
+  constructor(a, b) {
+    this.pa = a;
+    this.pb = b;
+    this.length = this.pa.position.dist(this.pb.position);
+  }
+
+  update() {
+    let dist = this.pa.position.dist(this.pb.position);
+    let diff = this.length - dist;
+    let offset = p5.Vector.sub(this.pa.position, this.pb.position).mult(diff / dist / 2);
+    this.pa.position.add(offset);
+    this.pb.position.sub(offset);
+  }
+
+  draw() {
+  let a = this.pa.position;
+  let b = this.pb.position;
+
+  let dir = p5.Vector.sub(b, a);
+  let len = dir.mag();
+  let angle = atan2(dir.y, dir.x);
+
+  push();
+  translate(a.x, a.y);
+  rotate(angle);
+
+  noStroke();
+  fill(245);
+
+  let thickness = 12; // bone thickness
+
+  // main shaft
+  rect(0, -thickness / 2, len, thickness, thickness);
+
+  // rounded joints
+  ellipse(0, 0, thickness * 1.3);
+  ellipse(len, 0, thickness * 1.3);
+
+  pop();
+  // =====================
+// HEAD HEIGHT CLAMP
+// =====================
+let skullSize = 50;
+let topMargin = skullSize * 1; // safety buffer
+
+if (points[0].position.y < topMargin) {
+  points[0].position.y = topMargin;
+}
+
+}
+
+
+
+}
+</script>
+
+<style>
+body {margin:0px; padding:0px; overflow: hidden}
+</style>
 </body>
 </html>
