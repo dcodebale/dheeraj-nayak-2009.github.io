@@ -71,22 +71,25 @@ function setup() {
   
   // Setup ENTER button - audio init deferred to click/tap
   const enterBtn = document.getElementById('enterButton');
-  const handleEnter = async (e) => {
+  const handleEnter = (e) => {
+    if (isPageEntered) return; // guard against double activation
     if (e && e.preventDefault) e.preventDefault();
     enterBtn.style.display = 'none';
     isPageEntered = true;
 
-    // Ensure the audio is started directly from the user gesture
+    // Ensure the audio is started directly from the user gesture (synchronous play call)
     audioElement = document.getElementById('audioPlayer');
     audioElement.src = './404 - Still Got Rhythm.mp3';
     audioElement.volume = 1.0;
     audioElement.loop = true;
-    // Attempt to play immediately as part of the click/tap gesture
-    try {
-      await audioElement.play();
-      console.log('Audio started from user gesture');
-    } catch (err) {
-      console.warn('play() failed on gesture:', err);
+
+    // Call play() synchronously inside the user event handler. Don't await —
+    // creating the play() promise must happen as a direct result of the gesture.
+    const playPromise = audioElement.play();
+    if (playPromise !== undefined) {
+      playPromise.then(() => console.log('Audio started from user gesture')).catch(err => {
+        console.warn('play() failed on gesture:', err);
+      });
     }
 
     // resume audio context if required by mobile browsers
@@ -98,7 +101,9 @@ function setup() {
     initAudio(true);
   };
   enterBtn.addEventListener('click', handleEnter, {passive:false});
-  enterBtn.addEventListener('touchstart', handleEnter, {passive:false});
+  // Use touchend (or pointerup) which counts as a user activation on many touch browsers
+  enterBtn.addEventListener('touchend', handleEnter, {passive:false});
+  enterBtn.addEventListener('pointerup', handleEnter, {passive:false});
   
   let u = height / 30;
   // load provided timestamped subtitles
