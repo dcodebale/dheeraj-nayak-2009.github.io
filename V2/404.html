@@ -27,13 +27,23 @@ body {margin:0px; padding:0px; overflow: hidden}
   background: transparent;
   border: 3px solid rgb(234, 255, 0);
   cursor: pointer;
-  z-index: 1000;
+  z-index: 100000; /* ensure it's above the canvas */
   transition: all 0.3s ease;
+  touch-action: manipulation; /* improve touch behavior */
 }
 
 #enterButton:hover {
   background: rgb(234, 255, 0);
   color: #000;
+}
+
+/* Keep the p5 canvas visually and interactively behind UI */
+canvas {
+  position: fixed !important;
+  left: 0;
+  top: 0;
+  z-index: 0;
+  touch-action: none; /* let UI controls receive taps */
 }
 </style>
 
@@ -59,13 +69,36 @@ function setup() {
   canvas = createCanvas(windowWidth, windowHeight);
   initStars();
   
-  // Setup ENTER button - audio init deferred to click
+  // Setup ENTER button - audio init deferred to click/tap
   const enterBtn = document.getElementById('enterButton');
-  enterBtn.addEventListener('click', () => {
+  const handleEnter = async (e) => {
+    if (e && e.preventDefault) e.preventDefault();
     enterBtn.style.display = 'none';
     isPageEntered = true;
-    initAudio();
-  });
+
+    // Ensure the audio is started directly from the user gesture
+    audioElement = document.getElementById('audioPlayer');
+    audioElement.src = './404 - Still Got Rhythm.mp3';
+    audioElement.volume = 1.0;
+    audioElement.loop = true;
+    // Attempt to play immediately as part of the click/tap gesture
+    try {
+      await audioElement.play();
+      console.log('Audio started from user gesture');
+    } catch (err) {
+      console.warn('play() failed on gesture:', err);
+    }
+
+    // resume audio context if required by mobile browsers
+    if (audioContext && audioContext.state === 'suspended' && audioContext.resume) {
+      audioContext.resume().catch(()=>{});
+    }
+
+    // Initialize analyser and connections. We already started playback above.
+    initAudio(true);
+  };
+  enterBtn.addEventListener('click', handleEnter, {passive:false});
+  enterBtn.addEventListener('touchstart', handleEnter, {passive:false});
   
   let u = height / 30;
   // load provided timestamped subtitles
@@ -353,45 +386,51 @@ function drawMusicVisualizer() {
   }
 }
 
-function initAudio() {
+function initAudio(alreadyPlaying = false) {
   try {
     audioElement = document.getElementById('audioPlayer');
-    audioElement.src = './404 - Still Got Rhythm.mp3';
-    audioElement.volume = 1.0;
-    audioElement.loop = true;
-    audioElement.load();
-    
-    console.log('Step 1: Audio element loaded');
-    
-    // Create FRESH AudioContext - like in your working example
+    // If audio hasn't been configured yet, set src and load
+    if (!audioElement.src) {
+      audioElement.src = './404 - Still Got Rhythm.mp3';
+      audioElement.volume = 1.0;
+      audioElement.loop = true;
+      audioElement.load();
+    }
+
+    console.log('Step 1: Audio element ready');
+
+    // Create FRESH AudioContext
     const ctx = new (window.AudioContext || window.webkitAudioContext)();
     audioContext = ctx;
-    
+
     console.log('Step 2: AudioContext created');
-    
+
     // Create source from the audio element
     const src = ctx.createMediaElementSource(audioElement);
     console.log('Step 3: Media source created');
-    
+
     // Create analyser
     const analyserNode = ctx.createAnalyser();
     analyserNode.fftSize = 256;
     analyser = analyserNode;
     bufferLength = analyser.frequencyBinCount;
     dataArray = new Uint8Array(bufferLength);
-    
+
     console.log('Step 4: Analyser created, bufferLength:', bufferLength);
-    
+
     // Connect chain: source -> analyser -> destination
     src.connect(analyser);
     analyser.connect(ctx.destination);
-    
+
     console.log('Step 5: Audio chain connected');
-    
-    // Now play
-    audioElement.play();
-    console.log('Step 6: Play called');
-    
+
+    // Only trigger play if initAudio was not called from the user gesture
+    if (!alreadyPlaying) {
+      audioElement.play().catch((err) => {
+        console.warn('play() rejected in initAudio:', err);
+      });
+    }
+
     // Start the data update loop
     function updateData() {
       if (!audioElement.paused) {
@@ -401,12 +440,12 @@ function initAudio() {
         console.log('Audio paused, stopping data update');
       }
     }
-    
+
     updateData();
-    console.log('✓ Audio visualization ready!');
-    
+    console.log('\u2713 Audio visualization ready!');
+
   } catch (e) {
-    console.error('✗ Audio init failed:', e.message, e);
+    console.error('\u2717 Audio init failed:', e && e.message, e);
   }
 }
 
